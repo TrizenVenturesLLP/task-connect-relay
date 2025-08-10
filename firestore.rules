@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthed() { return request.auth != null; }
+
+    match /profiles/{uid} {
+      allow read: if isAuthed() && request.auth.uid == uid;
+      // All writes go through Cloud Functions (admin SDK)
+      allow write: if false;
+    }
+
+    match /tasks/{taskId} {
+      allow read: if isAuthed();
+      allow write: if false;
+    }
+
+    match /notifications/{id} {
+      allow read: if isAuthed() && resource.data.toUid == request.auth.uid;
+      allow write: if false;
+      allow delete: if isAuthed() && resource.data.toUid == request.auth.uid;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

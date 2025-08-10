@@ -1,0 +1,24 @@
+{
+  "name": "extrahand-functions",
+  "description": "Firebase Functions backend for Extrahand",
+  "engines": { "node": "18" },
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "serve": "npm run build && firebase emulators:start --only functions,firestore,auth,storage",
+    "deploy": "npm run build && firebase deploy --only functions,firestore:rules,storage:rules",
+    "lint": "echo 'no linter configured'"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "firebase-admin": "^12.5.0",
+    "firebase-functions": "^4.8.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "typescript": "^5.4.0"
+  }
+}
