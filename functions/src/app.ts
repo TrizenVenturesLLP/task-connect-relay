@@ -4,12 +4,16 @@ import { authMiddleware } from "./middleware/auth";
 import profilesRouter from "./routes/profiles";
 import tasksRouter from "./routes/tasks";
 import matchesRouter from "./routes/matches";
+import authRouter from "./routes/auth";
 
 const app = express();
 app.use(cors({ origin: true }));
 app.use(express.json());
 
 app.get("/api/v1/health", (_req, res) => res.json({ status: "ok", ts: Date.now() }));
+
+// Public auth routes (no auth middleware)
+app.use("/api/v1/auth", authRouter);
 
 // Protected routes
 app.use("/api/v1", authMiddleware);
