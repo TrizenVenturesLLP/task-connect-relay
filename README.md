@@ -1,73 +1,97 @@
-# Welcome to your Lovable project
+# Standalone Express Backend (Firebase + Firestore)
 
-## Project info
+This folder contains a Node.js Express server that mirrors the existing Firebase Functions API.
 
-**URL**: https://lovable.dev/projects/48a8673c-8233-4e0e-85b4-481ed726105b
+Endpoints (same as before):
+- GET    /api/v1/health
 
-## How can I edit this code?
+- POST   /api/v1/auth/signup
+  request
+  {
+  "email": "user@example.com",
+  "password": "secret123",
+  "displayName": "Alex Doe",
+  "phoneNumber": "+15551234567"
+  }
 
-There are several ways of editing your application.
+- POST   /api/v1/auth/password/reset
 
-**Use Lovable**
+- GET    /api/v1/profiles/me
+response 
+{
+    "id": "fulIGWvUSCObTb534YTpY6ttaei1",
+    "_id": "689b3dbebe78618b1c306efd",
+    "uid": "fulIGWvUSCObTb534YTpY6ttaei1",
+    "availability": null,
+    "createdAt": 1755004351333,
+    "location": null,
+    "name": "Alex Doe",
+    "phone": "+918277730412",
+    "photoURL": null,
+    "rating": null,
+    "roles": [
+        "both"
+    ],
+    "skills": [],
+    "updatedAt": 1755004351333
+}
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/48a8673c-8233-4e0e-85b4-481ed726105b) and start prompting.
+- POST   /api/v1/profiles
+- POST   /api/v1/tasks
+- GET    /api/v1/tasks
+- GET    /api/v1/tasks/:id
+- POST   /api/v1/tasks/:id/accept
+- POST   /api/v1/tasks/:id/complete
+- GET    /api/v1/matches/tasks/:taskId/candidates
 
-Changes made via Lovable will be committed automatically to this repo.
+Auth: Protected routes require Authorization: Bearer <Firebase ID token>.
 
-**Use your preferred IDE**
+## Setup
+You can supply Firebase credentials in any of the following ways (priority order):
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1) Environment variables (recommended for CI/servers):
+   - `FIREBASE_PROJECT_ID`
+   - `FIREBASE_CLIENT_EMAIL`
+   - `FIREBASE_PRIVATE_KEY` (escape newlines as `\\n`)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2) Service account file:
+   - Place `serviceAccountKey.json` in this `backend/` folder, or
+   - Set `FIREBASE_SERVICE_ACCOUNT_PATH` to its location
 
-Follow these steps:
+3) Application Default Credentials (ADC):
+   - Set `GOOGLE_APPLICATION_CREDENTIALS` to the JSON path
+   - Or run where ADC is available (GCP/Cloud Run)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Optionally set `PORT` to change the port (default 4000).
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+## Install & Run
+```bash
+cd backend
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+# .env
+# Firebase (auth only) + MongoDB
+# MONGODB_URI=mongodb+srv://<user>:<pass>@<cluster>/<db>?retryWrites=true&w=majority&appName=<app>
+# MONGODB_DB=extrahand
+
+npm run dev   # watches with nodemon
+# or
+npm start     # production
 ```
 
-**Edit a file directly in GitHub**
+### .env example
+Create `backend/.env` (do not commit secrets) or use environment variables:
+```
+PORT=4000
+FIREBASE_PROJECT_ID=extrahand-app
+FIREBASE_CLIENT_EMAIL=firebase-adminsdk-xyz@extrahand-app.iam.gserviceaccount.com
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\\nMIIEv...\\n-----END PRIVATE KEY-----\\n"
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Notes
+- CORS is enabled by default for all origins during development.
+- Phone OTP flow remains client-side with Firebase Web SDK (Option B).
+- Firestore data model matches the previous Functions implementation.
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/48a8673c-8233-4e0e-85b4-481ed726105b) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Using ADPT4EH Firebase web credentials here
+The ADPT4EH app uses web SDK config (apiKey, authDomain, etc.). Those are not used by the Admin SDK. For this backend, keep Firebase only for authentication (verifying ID tokens). Data is stored in MongoDB.

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 2,
+  "dockerfilePath": "./Dockerfile",
+  "buildArguments": {},
+  "expose": {
+    "api": {
+      "containerPort": 4000,
+      "httpPort": 80,
+      "httpsPort": 443
+    }
+  },
+  "healthcheck": {
+    "path": "/api/v1/health",
+    "port": 4000,
+    "interval": 30,
+    "timeout": 10,
+    "retries": 3,
+    "startPeriod": 30
+  },
+  "notify": {
+    "webhook": "",
+    "slack": "",
+    "discord": ""
+  },
+  "customDomain": "",
+  "forceSsl": true,
+  "appName": "extrahand-backend",
+  "hasPersistentData": false,
+  "description": "Extrahand Backend API - Production Ready Node.js Express Server",
+  "instanceCount": 1,
+  "tags": ["nodejs", "express", "firebase", "mongodb", "api", "extrahand"],
+  "envVars": {
+    "NODE_ENV": "production",
+    "PORT": "4000",
+    "LOG_LEVEL": "info",
+    "RATE_LIMIT_WINDOW_MS": "900000",
+    "RATE_LIMIT_MAX_REQUESTS": "100"
+  },
+  "volumes": [
+    {
+      "name": "app-logs",
+      "path": "/app/logs"
+    }
+  ],
+  "restart": {
+    "policy": "unless-stopped",
+    "maximumRetryCount": 10
+  },
+  "resources": {
+    "memory": "512Mi",
+    "cpu": "0.5"
+  },
+  "networking": {
+    "publishAllPorts": false,
+    "enableTcpProxy": false
+  }
+}
