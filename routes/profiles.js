@@ -14,21 +14,40 @@ router.get('/me', async (req, res) => {
 // POST /api/v1/profiles
 router.post('/', async (req, res) => {
   const uid = req.user.uid;
-  const { name, roles, location, skills, availability, phone, photoURL } = req.body || {};
+  const { 
+    name, 
+    roles, 
+    location, 
+    skills, 
+    availability, 
+    phone,
+    photoURL,
+    email,
+    userType,
+    agreeUpdates,
+    agreeTerms
+  } = req.body || {};
+  
   if (!name || !roles || !Array.isArray(roles)) return res.status(400).json({ error: 'Invalid payload' });
+  
   const now = Date.now();
   const payload = {
     uid,
     name,
+    email: email ?? null,
     roles,
+    userType: userType ?? 'individual',
     location: location ?? null,
     skills: Array.isArray(skills) ? skills.map((s) => String(s).toLowerCase().trim()).slice(0, 50) : [],
     availability: availability ?? null,
     phone: phone ?? null,
     photoURL: photoURL ?? null,
+    agreeUpdates: agreeUpdates ?? false,
+    agreeTerms: agreeTerms ?? false,
     updatedAt: now,
     createdAt: now,
   };
+  
   await Profile.updateOne({ uid }, { $set: payload }, { upsert: true });
   const saved = await Profile.findOne({ uid }).lean();
   return res.json({ id: uid, ...saved });
