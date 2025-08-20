@@ -11,7 +11,9 @@ const fs = require('fs');
 const authRouter = require('./routes/auth');
 const profilesRouter = require('./routes/profiles');
 const tasksRouter = require('./routes/tasks');
+const devTasksRouter = require('./routes/dev-tasks');
 const matchesRouter = require('./routes/matches');
+const applicationsRouter = require('./routes/applications');
 const { authMiddleware } = require('./middleware/auth');
 const logger = require('./config/logger');
 const { validateEnv } = require('./config/env');
@@ -130,11 +132,18 @@ app.get('/api/v1/health', async (req, res) => {
 // API routes
 app.use('/api/v1/auth', authRouter);
 
+// Development-only unauthenticated routes
+if (env.NODE_ENV === 'development') {
+  app.use('/api/v1/dev/tasks', devTasksRouter);
+  logger.info('🔓 Development mode: Unauthenticated tasks endpoint enabled at /api/v1/dev/tasks');
+}
+
 // Protected routes
 app.use('/api/v1', authMiddleware);
 app.use('/api/v1/profiles', profilesRouter);
 app.use('/api/v1/tasks', tasksRouter);
 app.use('/api/v1/matches', matchesRouter);
+app.use('/api/v1/applications', applicationsRouter);
 
 // 404 handler for API routes
 app.use('/api', (req, res) => {

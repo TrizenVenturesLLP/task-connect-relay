@@ -35,3 +35,26 @@
 {"level":"info","message":"Environment: development","service":"extrahand-backend","timestamp":"2025-08-19 12:38:51"}
 {"level":"info","message":"Health check: http://localhost:4000/api/v1/health","service":"extrahand-backend","timestamp":"2025-08-19 12:38:51"}
 {"level":"info","message":"📴 Received SIGINT. Starting graceful shutdown...","service":"extrahand-backend","timestamp":"2025-08-19 15:39:18"}
+{"level":"info","message":"Connected to MongoDB","service":"extrahand-backend","timestamp":"2025-08-19 15:59:32"}
+{"level":"info","message":"🚀 Extrahand Backend API listening on port 4000","service":"extrahand-backend","timestamp":"2025-08-19 15:59:32"}
+{"level":"info","message":"Environment: development","service":"extrahand-backend","timestamp":"2025-08-19 15:59:32"}
+{"level":"info","message":"Health check: http://localhost:4000/api/v1/health","service":"extrahand-backend","timestamp":"2025-08-19 15:59:32"}
+{"level":"info","message":"📴 Received SIGINT. Starting graceful shutdown...","service":"extrahand-backend","timestamp":"2025-08-19 16:13:39"}
+{"level":"info","message":"Connected to MongoDB","service":"extrahand-backend","timestamp":"2025-08-19 17:18:31"}
+{"level":"info","message":"🚀 Extrahand Backend API listening on port 4000","service":"extrahand-backend","timestamp":"2025-08-19 17:18:31"}
+{"level":"info","message":"Environment: development","service":"extrahand-backend","timestamp":"2025-08-19 17:18:31"}
+{"level":"info","message":"Health check: http://localhost:4000/api/v1/health","service":"extrahand-backend","timestamp":"2025-08-19 17:18:31"}
+{"level":"info","message":"Connected to MongoDB","service":"extrahand-backend","timestamp":"2025-08-19 20:45:18"}
+{"level":"info","message":"🚀 Extrahand Backend API listening on port 4000","service":"extrahand-backend","timestamp":"2025-08-19 20:45:18"}
+{"level":"info","message":"Environment: development","service":"extrahand-backend","timestamp":"2025-08-19 20:45:18"}
+{"level":"info","message":"Health check: http://localhost:4000/api/v1/health","service":"extrahand-backend","timestamp":"2025-08-19 20:45:18"}
+{"level":"info","message":"Connected to MongoDB","service":"extrahand-backend","timestamp":"2025-08-20 10:35:58"}
+{"level":"info","message":"🚀 Extrahand Backend API listening on port 4000","service":"extrahand-backend","timestamp":"2025-08-20 10:35:58"}
+{"level":"info","message":"Environment: development","service":"extrahand-backend","timestamp":"2025-08-20 10:35:58"}
+{"level":"info","message":"Health check: http://localhost:4000/api/v1/health","service":"extrahand-backend","timestamp":"2025-08-20 10:35:58"}
+{"level":"info","message":"🔓 Development mode: Unauthenticated tasks endpoint enabled at /api/v1/dev/tasks","service":"extrahand-backend","timestamp":"2025-08-20 12:53:44"}
+{"level":"info","message":"Connected to MongoDB","service":"extrahand-backend","timestamp":"2025-08-20 12:53:44"}
+{"level":"info","message":"🚀 Extrahand Backend API listening on port 4000","service":"extrahand-backend","timestamp":"2025-08-20 12:53:44"}
+{"level":"info","message":"Environment: development","service":"extrahand-backend","timestamp":"2025-08-20 12:53:44"}
+{"level":"info","message":"Health check: http://localhost:4000/api/v1/health","service":"extrahand-backend","timestamp":"2025-08-20 12:53:44"}
+{"level":"info","message":"📴 Received SIGINT. Starting graceful shutdown...","service":"extrahand-backend","timestamp":"2025-08-20 13:29:21"}
