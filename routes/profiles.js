@@ -30,6 +30,25 @@ router.post('/', async (req, res) => {
   
   if (!name || !roles || !Array.isArray(roles)) return res.status(400).json({ error: 'Invalid payload' });
   
+  // Process location data to match the Profile model structure
+  let processedLocation = null;
+  if (location) {
+    processedLocation = {
+      type: 'Point',
+      coordinates: location.coordinates || [location.lng || 0, location.lat || 0],
+      address: location.address || null,
+      addressDetails: {
+        doorNo: location.doorNo || null,
+        area: location.area || null,
+        city: location.city || null,
+        state: location.state || null,
+        pinCode: location.pinCode || null,
+        country: location.country || null
+      },
+      isPublic: true
+    };
+  }
+  
   const now = Date.now();
   const payload = {
     uid,
@@ -37,7 +56,7 @@ router.post('/', async (req, res) => {
     email: email ?? null,
     roles,
     userType: userType ?? 'individual',
-    location: location ?? null,
+    location: processedLocation,
     skills: Array.isArray(skills) ? skills.map((s) => String(s).toLowerCase().trim()).slice(0, 50) : [],
     availability: availability ?? null,
     phone: phone ?? null,
@@ -48,8 +67,11 @@ router.post('/', async (req, res) => {
     createdAt: now,
   };
   
+  console.log('💾 Saving profile with location:', processedLocation);
+  
   await Profile.updateOne({ uid }, { $set: payload }, { upsert: true });
   const saved = await Profile.findOne({ uid }).lean();
+  console.log('✅ Profile saved successfully:', { uid, hasLocation: !!saved.location });
   return res.json({ id: uid, ...saved });
 });
 
