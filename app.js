@@ -64,6 +64,10 @@ const corsOptions = {
       'http://localhost:3001'
     ];
     
+    // Log the origin for debugging
+    logger.info(`CORS request from origin: ${origin}`);
+    logger.info(`Allowed origins: ${allowedOrigins.join(', ')}`);
+    
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -82,25 +86,13 @@ const corsOptions = {
     'Authorization',
     'Cache-Control',
     'Pragma'
-  ]
+  ],
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
 app.use(cors(corsOptions));
 
-// Additional CORS headers for preflight requests
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', req.headers.origin);
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control, Pragma');
-  
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
-  
-  next();
-});
+
 
 // Body parsing and compression
 app.use(compression());
