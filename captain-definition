@@ -35,7 +35,7 @@
     "LOG_LEVEL": "info",
     "RATE_LIMIT_WINDOW_MS": "900000",
     "RATE_LIMIT_MAX_REQUESTS": "100",
-    "CORS_ORIGIN": "https://extrahand.in,https://extrahandbackend.llp.trizenventures.com"
+    "CORS_ORIGIN": "https://extrahand.in,https://extrahandbackend.llp.trizenventures.com,http://localhost:8080,http://localhost:3000,http://localhost:8081"
   },
   "volumes": [
     {

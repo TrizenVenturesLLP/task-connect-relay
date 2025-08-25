@@ -13,22 +13,30 @@ router.get('/me', async (req, res) => {
 
 // POST /api/v1/profiles
 router.post('/', async (req, res) => {
-  const uid = req.user.uid;
-  const { 
-    name, 
-    roles, 
-    location, 
-    skills, 
-    availability, 
-    phone,
-    photoURL,
-    email,
-    userType,
-    agreeUpdates,
-    agreeTerms
-  } = req.body || {};
-  
-  if (!name || !roles || !Array.isArray(roles)) return res.status(400).json({ error: 'Invalid payload' });
+  try {
+    const uid = req.user.uid;
+    console.log('💾 Profile save request for user:', uid);
+    console.log('📝 Request body:', JSON.stringify(req.body, null, 2));
+    
+    const { 
+      name, 
+      roles, 
+      location, 
+      skills, 
+      availability, 
+      phone,
+      photoURL,
+      email,
+      userType,
+      business,
+      agreeUpdates = false,
+      agreeTerms = false
+    } = req.body || {};
+    
+    if (!name || !roles || !Array.isArray(roles)) {
+      console.error('❌ Invalid payload:', { name, roles });
+      return res.status(400).json({ error: 'Invalid payload - name and roles array required' });
+    }
   
   // Process location data to match the Profile model structure
   let processedLocation = null;
@@ -61,6 +69,7 @@ router.post('/', async (req, res) => {
     availability: availability ?? null,
     phone: phone ?? null,
     photoURL: photoURL ?? null,
+    business: business ?? null,
     agreeUpdates: agreeUpdates ?? false,
     agreeTerms: agreeTerms ?? false,
     updatedAt: now,
@@ -73,6 +82,10 @@ router.post('/', async (req, res) => {
   const saved = await Profile.findOne({ uid }).lean();
   console.log('✅ Profile saved successfully:', { uid, hasLocation: !!saved.location });
   return res.json({ id: uid, ...saved });
+  } catch (error) {
+    console.error('❌ Error saving profile:', error);
+    return res.status(500).json({ error: 'Failed to save profile', details: error.message });
+  }
 });
 
 module.exports = router;

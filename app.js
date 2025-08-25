@@ -78,7 +78,7 @@ const corsOptions = {
     }
   },
   credentials: true,
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 204, // Changed from 200 to 204 for preflight success
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: [
     'Origin',
@@ -89,12 +89,24 @@ const corsOptions = {
     'Cache-Control',
     'Pragma'
   ],
-  preflightContinue: false,
-  optionsSuccessStatus: 204
+  preflightContinue: false
 };
 app.use(cors(corsOptions));
 
-
+// Additional CORS headers for better compatibility
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control, Pragma');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    res.status(204).end();
+    return;
+  }
+  
+  next();
+});
 
 // Body parsing and compression
 app.use(compression());
