@@ -328,3 +328,485 @@
 {"level":"info","message":"📴 Received SIGINT. Starting graceful shutdown...","service":"extrahand-backend","timestamp":"2025-08-26 17:00:54"}
 {"level":"info","message":"✅ HTTP server closed","service":"extrahand-backend","timestamp":"2025-08-26 17:00:54"}
 {"level":"info","message":"✅ MongoDB connection closed","service":"extrahand-backend","timestamp":"2025-08-26 17:00:55"}
+{"level":"info","message":"🔓 Development mode: Unauthenticated tasks endpoint enabled at /api/v1/dev/tasks","service":"extrahand-backend","timestamp":"2025-08-26 18:41:45"}
+{"level":"info","message":"Connected to MongoDB","service":"extrahand-backend","timestamp":"2025-08-26 18:41:46"}
+{"level":"info","message":"🚀 Extrahand Backend API listening on port 4000","service":"extrahand-backend","timestamp":"2025-08-26 18:41:46"}
+{"level":"info","message":"Environment: development","service":"extrahand-backend","timestamp":"2025-08-26 18:41:46"}
+{"level":"info","message":"Health check: http://localhost:4000/api/v1/health","service":"extrahand-backend","timestamp":"2025-08-26 18:41:46"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:02:26"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com","service":"extrahand-backend","timestamp":"2025-08-26 19:02:26"}
+{"level":"warn","message":"CORS blocked request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:02:26"}
+{"error":"Not allowed by CORS","ip":"::1","level":"error","message":"Unhandled error:","method":"OPTIONS","service":"extrahand-backend","stack":"Error: Not allowed by CORS\n    at origin (C:\\Trizen\\eh\\BackendEH\\app.js:74:16)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handle [as handle_request] (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express-rate-limit\\dist\\index.cjs:807:7","timestamp":"2025-08-26 19:02:26","url":"/api/v1/profiles/me","userAgent":"Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:02:26"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com","service":"extrahand-backend","timestamp":"2025-08-26 19:02:26"}
+{"level":"warn","message":"CORS blocked request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:02:26"}
+{"error":"Not allowed by CORS","ip":"::1","level":"error","message":"Unhandled error:","method":"OPTIONS","service":"extrahand-backend","stack":"Error: Not allowed by CORS\n    at origin (C:\\Trizen\\eh\\BackendEH\\app.js:74:16)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handle [as handle_request] (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express-rate-limit\\dist\\index.cjs:807:7","timestamp":"2025-08-26 19:02:26","url":"/api/v1/profiles/me","userAgent":"Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:05:20"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com","service":"extrahand-backend","timestamp":"2025-08-26 19:05:20"}
+{"level":"warn","message":"CORS blocked request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:05:20"}
+{"error":"Not allowed by CORS","ip":"::1","level":"error","message":"Unhandled error:","method":"OPTIONS","service":"extrahand-backend","stack":"Error: Not allowed by CORS\n    at origin (C:\\Trizen\\eh\\BackendEH\\app.js:74:16)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handle [as handle_request] (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express-rate-limit\\dist\\index.cjs:807:7","timestamp":"2025-08-26 19:05:20","url":"/api/v1/profiles/me","userAgent":"Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:05:23"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com","service":"extrahand-backend","timestamp":"2025-08-26 19:05:23"}
+{"level":"warn","message":"CORS blocked request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:05:23"}
+{"error":"Not allowed by CORS","ip":"::1","level":"error","message":"Unhandled error:","method":"OPTIONS","service":"extrahand-backend","stack":"Error: Not allowed by CORS\n    at origin (C:\\Trizen\\eh\\BackendEH\\app.js:74:16)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handle [as handle_request] (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express-rate-limit\\dist\\index.cjs:807:7","timestamp":"2025-08-26 19:05:23","url":"/api/v1/profiles","userAgent":"Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:05:28"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com","service":"extrahand-backend","timestamp":"2025-08-26 19:05:28"}
+{"level":"warn","message":"CORS blocked request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:05:28"}
+{"error":"Not allowed by CORS","ip":"::1","level":"error","message":"Unhandled error:","method":"OPTIONS","service":"extrahand-backend","stack":"Error: Not allowed by CORS\n    at origin (C:\\Trizen\\eh\\BackendEH\\app.js:74:16)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handle [as handle_request] (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express-rate-limit\\dist\\index.cjs:807:7","timestamp":"2025-08-26 19:05:28","url":"/api/v1/profiles","userAgent":"Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:05:29"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com","service":"extrahand-backend","timestamp":"2025-08-26 19:05:29"}
+{"level":"warn","message":"CORS blocked request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:05:29"}
+{"error":"Not allowed by CORS","ip":"::1","level":"error","message":"Unhandled error:","method":"OPTIONS","service":"extrahand-backend","stack":"Error: Not allowed by CORS\n    at origin (C:\\Trizen\\eh\\BackendEH\\app.js:74:16)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Trizen\\eh\\BackendEH\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handle [as handle_request] (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\Trizen\\eh\\BackendEH\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at C:\\Trizen\\eh\\BackendEH\\node_modules\\express-rate-limit\\dist\\index.cjs:807:7","timestamp":"2025-08-26 19:05:29","url":"/api/v1/tasks?status=open&limit=50","userAgent":"Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36"}
+{"level":"info","message":"📴 Received SIGINT. Starting graceful shutdown...","service":"extrahand-backend","timestamp":"2025-08-26 19:05:37"}
+{"level":"info","message":"🔓 Development mode: Unauthenticated tasks endpoint enabled at /api/v1/dev/tasks","service":"extrahand-backend","timestamp":"2025-08-26 19:05:46"}
+{"level":"info","message":"Connected to MongoDB","service":"extrahand-backend","timestamp":"2025-08-26 19:05:47"}
+{"level":"info","message":"🚀 Extrahand Backend API listening on port 4000","service":"extrahand-backend","timestamp":"2025-08-26 19:05:47"}
+{"level":"info","message":"Environment: development","service":"extrahand-backend","timestamp":"2025-08-26 19:05:47"}
+{"level":"info","message":"Health check: http://localhost:4000/api/v1/health","service":"extrahand-backend","timestamp":"2025-08-26 19:05:47"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:11"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:11"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:11"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:11"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:11"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:11"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:11"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:11"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:13"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:13"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:20"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:20"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:20"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:20"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:27"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:27"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:27"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:27"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:28"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:28"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:46"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:46"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:46"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:46"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:51"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:51"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:51"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:06:51"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:08:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:08:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:08:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:08:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:08:40"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:08:40"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:09:35"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:09:35"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:09:35"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:09:35"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:12:22"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:12:22"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:12:22"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:12:22"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:01"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:01"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:01"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:01"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:38"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:38"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:38"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:38"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:44"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:44"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:44"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:13:44"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:12"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:12"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:12"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:12"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:17"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:19"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:19"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:21"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:14:21"}
+{"level":"info","message":"📴 Received SIGINT. Starting graceful shutdown...","service":"extrahand-backend","timestamp":"2025-08-26 19:14:35"}
+{"level":"info","message":"🔓 Development mode: Unauthenticated tasks endpoint enabled at /api/v1/dev/tasks","service":"extrahand-backend","timestamp":"2025-08-26 19:14:40"}
+{"level":"info","message":"Connected to MongoDB","service":"extrahand-backend","timestamp":"2025-08-26 19:14:41"}
+{"level":"info","message":"🚀 Extrahand Backend API listening on port 4000","service":"extrahand-backend","timestamp":"2025-08-26 19:14:41"}
+{"level":"info","message":"Environment: development","service":"extrahand-backend","timestamp":"2025-08-26 19:14:41"}
+{"level":"info","message":"Health check: http://localhost:4000/api/v1/health","service":"extrahand-backend","timestamp":"2025-08-26 19:14:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:14"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:14"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:14"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:14"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:16"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:16"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:16"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:16"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:22"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:22"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:22"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:22"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:25"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:25"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:26"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:26"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:44"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:44"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:44"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:44"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:45"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:45"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:45"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:45"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:45"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:45"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:45"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:45"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:47"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:15:47"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:10"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:20:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:14"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:31"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:31"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:31"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:31"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:31"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:31"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:31"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:31"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:31"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:31"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:44"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:53"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:53"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:53"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:53"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:53"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:53"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:53"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:53"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:53"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:21:53"}
+{"level":"info","message":"📴 Received SIGINT. Starting graceful shutdown...","service":"extrahand-backend","timestamp":"2025-08-26 19:23:59"}
+{"level":"info","message":"🔓 Development mode: Unauthenticated tasks endpoint enabled at /api/v1/dev/tasks","service":"extrahand-backend","timestamp":"2025-08-26 19:24:04"}
+{"level":"info","message":"Connected to MongoDB","service":"extrahand-backend","timestamp":"2025-08-26 19:24:05"}
+{"level":"info","message":"🚀 Extrahand Backend API listening on port 4000","service":"extrahand-backend","timestamp":"2025-08-26 19:24:05"}
+{"level":"info","message":"Environment: development","service":"extrahand-backend","timestamp":"2025-08-26 19:24:05"}
+{"level":"info","message":"Health check: http://localhost:4000/api/v1/health","service":"extrahand-backend","timestamp":"2025-08-26 19:24:05"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:10"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:10"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:10"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:10"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:11"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:11"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:11"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:11"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:11"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:11"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:11"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:11"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:13"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:13"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:14"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:14"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:21"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:21"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:21"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:21"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:21"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:21"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:21"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:21"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:28"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:28"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:28"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:28"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:28"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:28"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:28"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:29"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:29"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:29"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:29"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:29"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:29"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:29"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:29"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:24:29"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:27"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:27"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:27"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:27"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:31"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:31"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:31"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:31"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:31"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:31"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:31"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:31"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:34"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:25:34"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:26:54"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:49"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:27:58"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:24"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:24"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:24"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:24"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:24"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:24"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:24"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:24"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:24"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:24"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:25"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:25"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:27"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:27"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:30"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:30"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:30"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:28:30"}
+{"level":"info","message":"📴 Received SIGINT. Starting graceful shutdown...","service":"extrahand-backend","timestamp":"2025-08-26 19:28:40"}
+{"level":"info","message":"🔓 Development mode: Unauthenticated tasks endpoint enabled at /api/v1/dev/tasks","service":"extrahand-backend","timestamp":"2025-08-26 19:28:56"}
+{"level":"info","message":"Connected to MongoDB","service":"extrahand-backend","timestamp":"2025-08-26 19:28:58"}
+{"level":"info","message":"🚀 Extrahand Backend API listening on port 4000","service":"extrahand-backend","timestamp":"2025-08-26 19:28:58"}
+{"level":"info","message":"Environment: development","service":"extrahand-backend","timestamp":"2025-08-26 19:28:58"}
+{"level":"info","message":"Health check: http://localhost:4000/api/v1/health","service":"extrahand-backend","timestamp":"2025-08-26 19:28:58"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:39"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:39"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:39"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:39"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:41"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:41"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:43"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:29:43"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:30:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:18"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:18"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:18"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:18"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:18"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:18"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:18"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:18"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:18"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:18"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:36"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:31:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:32"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:38"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:38"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:38"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:38"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:38"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:38"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:38"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:38"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:48"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:48"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:49"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:49"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:49"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:33:49"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:15"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:15"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:15"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:15"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:20"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:20"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:37"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:38"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:35:38"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:37:34"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:37:34"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:37:34"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:37:34"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:37:34"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:37:34"}
+{"level":"info","message":"CORS request from origin: http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:37:34"}
+{"level":"info","message":"Allowed origins: https://extrahand.in, https://www.extrahand.in, https://extrahandbackend.llp.trizenventures.com, http://localhost:8080","service":"extrahand-backend","timestamp":"2025-08-26 19:37:34"}
+{"level":"info","message":"📴 Received SIGINT. Starting graceful shutdown...","service":"extrahand-backend","timestamp":"2025-08-26 19:44:09"}

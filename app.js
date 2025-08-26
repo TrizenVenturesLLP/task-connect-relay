@@ -57,7 +57,7 @@ const corsOptions = {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
-    const allowedOrigins = env.CORS_ORIGIN ? env.CORS_ORIGIN.split(',') : [
+        const allowedOrigins = env.CORS_ORIGIN ? env.CORS_ORIGIN.split(',') : [
       'https://extrahand.in',
       'https://www.extrahand.in',
       'https://extrahandbackend.llp.trizenventures.com'
