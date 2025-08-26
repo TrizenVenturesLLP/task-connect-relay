@@ -11,13 +11,55 @@ router.get('/me', async (req, res) => {
   return res.json({ id: doc.uid, ...doc });
 });
 
+// GET /api/v1/profiles/onboarding-status
+router.get('/onboarding-status', async (req, res) => {
+  try {
+    const uid = req.user.uid;
+    const doc = await Profile.findOne({ uid }).lean();
+    
+    if (!doc) {
+      return res.json({
+        isCompleted: false,
+        completedSteps: {
+          location: false,
+          roles: false,
+          profile: false
+        },
+        lastStep: 'location'
+      });
+    }
+    
+    return res.json(doc.onboardingStatus || {
+      isCompleted: false,
+      completedSteps: {
+        location: false,
+        roles: false,
+        profile: false
+      },
+      lastStep: 'location'
+    });
+  } catch (error) {
+    console.error('❌ Error getting onboarding status:', error);
+    return res.status(500).json({ error: 'Failed to get onboarding status' });
+  }
+});
+
 // POST /api/v1/profiles
 router.post('/', async (req, res) => {
   try {
+    // Check if user is authenticated
+    if (!req.user || !req.user.uid) {
+      console.error('❌ No authenticated user found');
+      return res.status(401).json({ error: 'Authentication required' });
+    }
+    
     const uid = req.user.uid;
     console.log('💾 Profile save request for user:', uid);
     console.log('📝 Request body:', JSON.stringify(req.body, null, 2));
+    console.log('📝 Request headers:', JSON.stringify(req.headers, null, 2));
+    console.log('📝 Content-Type:', req.headers['content-type']);
     
+    // Filter out server-generated fields that shouldn't be sent by client
     const { 
       name, 
       roles, 
@@ -30,8 +72,23 @@ router.post('/', async (req, res) => {
       userType,
       business,
       agreeUpdates = false,
-      agreeTerms = false
+      agreeTerms = false,
+      // Ignore these server-generated fields
+      id, uid: clientUid, createdAt, updatedAt, ...rest
     } = req.body || {};
+    
+    // Log any unexpected fields
+    if (Object.keys(rest).length > 0) {
+      console.warn('⚠️ Unexpected fields in request body:', Object.keys(rest));
+    }
+    
+    console.log('🔍 Validation check:', { 
+      hasName: !!name, 
+      hasRoles: !!roles, 
+      isRolesArray: Array.isArray(roles),
+      rolesValue: roles,
+      nameValue: name
+    });
     
     if (!name || !roles || !Array.isArray(roles)) {
       console.error('❌ Invalid payload:', { name, roles });
@@ -58,6 +115,23 @@ router.post('/', async (req, res) => {
   }
   
   const now = Date.now();
+  
+  // Determine onboarding status based on provided data
+  const hasLocation = !!processedLocation;
+  const hasRoles = Array.isArray(roles) && roles.length > 0;
+  const hasProfile = !!(name && email);
+  
+  const onboardingStatus = {
+    isCompleted: hasLocation && hasRoles && hasProfile,
+    completedSteps: {
+      location: hasLocation,
+      roles: hasRoles,
+      profile: hasProfile
+    },
+    completedAt: (hasLocation && hasRoles && hasProfile) ? now : null,
+    lastStep: hasProfile ? 'profile' : hasRoles ? 'roles' : hasLocation ? 'location' : 'location'
+  };
+  
   const payload = {
     uid,
     name,
@@ -72,6 +146,7 @@ router.post('/', async (req, res) => {
     business: business ?? null,
     agreeUpdates: agreeUpdates ?? false,
     agreeTerms: agreeTerms ?? false,
+    onboardingStatus,
     updatedAt: now,
     createdAt: now,
   };
@@ -84,7 +159,12 @@ router.post('/', async (req, res) => {
   return res.json({ id: uid, ...saved });
   } catch (error) {
     console.error('❌ Error saving profile:', error);
-    return res.status(500).json({ error: 'Failed to save profile', details: error.message });
+    console.error('❌ Error stack:', error.stack);
+    return res.status(500).json({ 
+      error: 'Failed to save profile', 
+      details: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    });
   }
 });
 

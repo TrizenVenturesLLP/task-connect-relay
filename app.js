@@ -59,11 +59,8 @@ const corsOptions = {
     
     const allowedOrigins = env.CORS_ORIGIN ? env.CORS_ORIGIN.split(',') : [
       'https://extrahand.in',
-      'https://extrahandbackend.llp.trizenventures.com',
-      'http://localhost:3000',
-      'http://localhost:3001',
-      'http://localhost:8080',
-      'http://localhost:8081'
+      'https://www.extrahand.in',
+      'https://extrahandbackend.llp.trizenventures.com'
     ];
     
     // Log the origin for debugging

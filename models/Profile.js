@@ -161,7 +161,19 @@ const ProfileSchema = new Schema(
     // Account status
     isActive: { type: Boolean, default: true, index: true },
     isSuspended: { type: Boolean, default: false },
-    suspensionReason: String
+    suspensionReason: String,
+    
+    // Onboarding status
+    onboardingStatus: {
+      isCompleted: { type: Boolean, default: false, index: true },
+      completedSteps: {
+        location: { type: Boolean, default: false },
+        roles: { type: Boolean, default: false },
+        profile: { type: Boolean, default: false }
+      },
+      completedAt: Date,
+      lastStep: { type: String, enum: ['location', 'roles', 'profile', 'complete'], default: 'location' }
+    }
   },
   { 
     versionKey: false,
