@@ -138,15 +138,11 @@ TaskSchema.pre('save', function(next) {
 });
 
 // Static method to find nearby tasks
-TaskSchema.statics.findNearby = function(coordinates, maxDistance = 50000) {
+TaskSchema.statics.findNearby = function(coordinates, maxDistanceKm = 50) {
   return this.find({
     'location.coordinates': {
-      $near: {
-        $geometry: {
-          type: 'Point',
-          coordinates: coordinates
-        },
-        $maxDistance: maxDistance
+      $geoWithin: {
+        $centerSphere: [coordinates, maxDistanceKm / 6371] // radius in radians (6371 km = Earth's radius)
       }
     },
     status: 'open'

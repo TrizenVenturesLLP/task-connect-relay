@@ -161,13 +161,10 @@ router.get('/', async (req, res) => {
           const radius = Number(radiusKm) || 50;
           const maxDistance = radius * 1000; // Convert to meters
           
+          // Use $geoWithin instead of $near for better compatibility
           query['location.coordinates'] = {
-            $near: {
-              $geometry: {
-                type: 'Point',
-                coordinates: userLocation
-              },
-              $maxDistance: maxDistance
+            $geoWithin: {
+              $centerSphere: [userLocation, radius / 6371] // radius in radians (6371 km = Earth's radius)
             }
           };
           
@@ -183,13 +180,32 @@ router.get('/', async (req, res) => {
     else if (sortBy === 'budget_desc') sortOptions = { 'budget.amount': -1 };
     else if (sortBy === 'distance') sortOptions = { createdAt: -1 }; // Will be sorted after distance calculation
     else if (sortBy === 'urgent') sortOptions = { isUrgent: -1, createdAt: -1 };
+    else if (String(recommend) === 'true') sortOptions = { createdAt: -1 }; // For recommendations, sort by creation date
 
-    // Execute query
-    const docs = await Task.find(query)
-      .sort(sortOptions)
-      .skip(skip)
-      .limit(pageSize)
-      .lean();
+    // Execute query with fallback for geospatial errors
+    let docs;
+    try {
+      docs = await Task.find(query)
+        .sort(sortOptions)
+        .skip(skip)
+        .limit(pageSize)
+        .lean();
+    } catch (geoError) {
+      // If geospatial query fails, fall back to simple query without location filter
+      if (geoError.message.includes('$geoNear') || geoError.message.includes('$near') || geoError.message.includes('$geoWithin')) {
+        console.warn('Geospatial query failed, falling back to simple query:', geoError.message);
+        
+        // Remove geospatial query and try again
+        delete query['location.coordinates'];
+        docs = await Task.find(query)
+          .sort(sortOptions)
+          .skip(skip)
+          .limit(pageSize)
+          .lean();
+      } else {
+        throw geoError; // Re-throw if it's not a geospatial error
+      }
+    }
 
     // Calculate distances if needed
     let results = docs.map(d => ({ id: String(d._id), ...d }));
