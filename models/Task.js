@@ -364,6 +364,15 @@ const originalFindById = Task.findById.bind(Task);
 const originalCreate = Task.create.bind(Task);
 const originalCountDocuments = Task.countDocuments.bind(Task);
 const originalUpdateOne = Task.updateOne.bind(Task);
+const originalUpdateMany = Task.updateMany.bind(Task);
+const originalDeleteOne = Task.deleteOne.bind(Task);
+const originalDeleteMany = Task.deleteMany.bind(Task);
+const originalFindByIdAndUpdate = Task.findByIdAndUpdate.bind(Task);
+const originalFindByIdAndDelete = Task.findByIdAndDelete.bind(Task);
+const originalFindOneAndUpdate = Task.findOneAndUpdate.bind(Task);
+const originalFindOneAndDelete = Task.findOneAndDelete.bind(Task);
+const originalAggregate = Task.aggregate.bind(Task);
+const originalDistinct = Task.distinct.bind(Task);
 
 // Dynamic MongoDB connection check function
 function isMongoConnected() {
@@ -465,6 +474,346 @@ Task.updateOne = function(query, update) {
     
     inMemoryTasks.set(taskId, updatedTask);
     return createMockQuery({ modifiedCount: 1 });
+  }
+};
+
+Task.updateMany = function(query, update) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Task.updateMany');
+    return originalUpdateMany(query, update);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.updateMany');
+    const tasks = Array.from(inMemoryTasks.values());
+    let modifiedCount = 0;
+    
+    tasks.forEach(task => {
+      if (Object.keys(query).every(key => task[key] === query[key])) {
+        Object.assign(task, update, { updatedAt: new Date() });
+        modifiedCount++;
+      }
+    });
+    
+    return createMockQuery({ modifiedCount });
+  }
+};
+
+Task.deleteOne = function(query) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Task.deleteOne');
+    return originalDeleteOne(query);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.deleteOne');
+    const taskId = query._id;
+    if (!taskId) {
+      return createMockQuery({ deletedCount: 0 });
+    }
+    
+    const deleted = inMemoryTasks.delete(taskId);
+    return createMockQuery({ deletedCount: deleted ? 1 : 0 });
+  }
+};
+
+Task.deleteMany = function(query) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Task.deleteMany');
+    return originalDeleteMany(query);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.deleteMany');
+    const tasks = Array.from(inMemoryTasks.values());
+    let deletedCount = 0;
+    
+    tasks.forEach(task => {
+      if (Object.keys(query).every(key => task[key] === query[key])) {
+        inMemoryTasks.delete(task._id);
+        deletedCount++;
+      }
+    });
+    
+    return createMockQuery({ deletedCount });
+  }
+};
+
+Task.findByIdAndUpdate = function(id, update, options = {}) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Task.findByIdAndUpdate');
+    return originalFindByIdAndUpdate(id, update, options);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.findByIdAndUpdate');
+    const existingTask = inMemoryTasks.get(id);
+    if (!existingTask) {
+      return createMockQuery(null);
+    }
+    
+    const updatedTask = {
+      ...existingTask,
+      ...update,
+      updatedAt: new Date()
+    };
+    
+    inMemoryTasks.set(id, updatedTask);
+    
+    if (options.new) {
+      return createMockQuery(updatedTask);
+    } else {
+      return createMockQuery(existingTask);
+    }
+  }
+};
+
+Task.findByIdAndDelete = function(id) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Task.findByIdAndDelete');
+    return originalFindByIdAndDelete(id);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.findByIdAndDelete');
+    const existingTask = inMemoryTasks.get(id);
+    if (!existingTask) {
+      return createMockQuery(null);
+    }
+    
+    inMemoryTasks.delete(id);
+    return createMockQuery(existingTask);
+  }
+};
+
+Task.findOneAndUpdate = function(query, update, options = {}) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Task.findOneAndUpdate');
+    return originalFindOneAndUpdate(query, update, options);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.findOneAndUpdate');
+    const existingTask = Task.findOneInMemory(query);
+    if (!existingTask) {
+      return createMockQuery(null);
+    }
+    
+    const updatedTask = {
+      ...existingTask,
+      ...update,
+      updatedAt: new Date()
+    };
+    
+    inMemoryTasks.set(existingTask._id, updatedTask);
+    
+    if (options.new) {
+      return createMockQuery(updatedTask);
+    } else {
+      return createMockQuery(existingTask);
+    }
+  }
+};
+
+Task.findOneAndDelete = function(query) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Task.findOneAndDelete');
+    return originalFindOneAndDelete(query);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.findOneAndDelete');
+    const existingTask = Task.findOneInMemory(query);
+    if (!existingTask) {
+      return createMockQuery(null);
+    }
+    
+    inMemoryTasks.delete(existingTask._id);
+    return createMockQuery(existingTask);
+  }
+};
+
+Task.aggregate = function(pipeline) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Task.aggregate');
+    return originalAggregate(pipeline);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.aggregate');
+    const tasks = Array.from(inMemoryTasks.values());
+    
+    // Simple aggregation simulation
+    let result = tasks;
+    
+    for (const stage of pipeline) {
+      if (stage.$match) {
+        result = result.filter(task => {
+          return Object.keys(stage.$match).every(key => {
+            const value = stage.$match[key];
+            if (typeof value === 'object' && value.$in) {
+              return value.$in.includes(task[key]);
+            }
+            return task[key] === value;
+          });
+        });
+      } else if (stage.$group) {
+        // Simple grouping simulation
+        const grouped = {};
+        result.forEach(task => {
+          const groupKey = task[stage.$group._id];
+          if (!grouped[groupKey]) {
+            grouped[groupKey] = [];
+          }
+          grouped[groupKey].push(task);
+        });
+        result = Object.entries(grouped).map(([key, items]) => ({
+          _id: key,
+          count: items.length,
+          items: items
+        }));
+      } else if (stage.$sort) {
+        result.sort((a, b) => {
+          for (const [key, order] of Object.entries(stage.$sort)) {
+            if (a[key] < b[key]) return order === 1 ? -1 : 1;
+            if (a[key] > b[key]) return order === 1 ? 1 : -1;
+          }
+          return 0;
+        });
+      } else if (stage.$limit) {
+        result = result.slice(0, stage.$limit);
+      } else if (stage.$skip) {
+        result = result.slice(stage.$skip);
+      }
+    }
+    
+    return createMockQuery(result);
+  }
+};
+
+Task.distinct = function(field, query = {}) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Task.distinct');
+    return originalDistinct(field, query);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.distinct');
+    const tasks = Array.from(inMemoryTasks.values());
+    
+    // Apply query filter
+    let filteredTasks = tasks;
+    if (Object.keys(query).length > 0) {
+      filteredTasks = tasks.filter(task => {
+        return Object.keys(query).every(key => task[key] === query[key]);
+      });
+    }
+    
+    // Get distinct values
+    const distinctValues = [...new Set(filteredTasks.map(task => task[field]))];
+    return createMockQuery(distinctValues);
+  }
+};
+
+// Additional useful methods
+Task.exists = function(query) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Task.exists');
+    return Task.countDocuments(query).then(count => count > 0);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.exists');
+    const tasks = Array.from(inMemoryTasks.values());
+    const exists = tasks.some(task => {
+      return Object.keys(query).every(key => task[key] === query[key]);
+    });
+    return Promise.resolve(exists);
+  }
+};
+
+Task.findByIdAndRemove = function(id) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Task.findByIdAndRemove');
+    return originalFindByIdAndDelete(id);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.findByIdAndRemove');
+    const existingTask = inMemoryTasks.get(id);
+    if (!existingTask) {
+      return createMockQuery(null);
+    }
+    
+    inMemoryTasks.delete(id);
+    return createMockQuery(existingTask);
+  }
+};
+
+// Helper method to get tasks by status
+Task.findByStatus = function(status) {
+  if (isMongoConnected()) {
+    // Use real MongoDB
+    console.log('✅ Using real MongoDB for Task.findByStatus');
+    return Task.find({ status });
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.findByStatus');
+    const tasks = Array.from(inMemoryTasks.values());
+    const filteredTasks = tasks.filter(task => task.status === status);
+    return createMockQuery(filteredTasks);
+  }
+};
+
+// Helper method to get tasks by category
+Task.findByCategory = function(category) {
+  if (isMongoConnected()) {
+    // Use real MongoDB
+    console.log('✅ Using real MongoDB for Task.findByCategory');
+    return Task.find({ category });
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.findByCategory');
+    const tasks = Array.from(inMemoryTasks.values());
+    const filteredTasks = tasks.filter(task => task.category === category);
+    return createMockQuery(filteredTasks);
+  }
+};
+
+// Helper method to get tasks by location (city)
+Task.findByCity = function(city) {
+  if (isMongoConnected()) {
+    // Use real MongoDB
+    console.log('✅ Using real MongoDB for Task.findByCity');
+    return Task.find({ 'location.city': city });
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.findByCity');
+    const tasks = Array.from(inMemoryTasks.values());
+    const filteredTasks = tasks.filter(task => task.location.city === city);
+    return createMockQuery(filteredTasks);
+  }
+};
+
+// Helper method to get tasks within budget range
+Task.findByBudgetRange = function(minBudget, maxBudget) {
+  if (isMongoConnected()) {
+    // Use real MongoDB
+    console.log('✅ Using real MongoDB for Task.findByBudgetRange');
+    return Task.find({ 
+      budget: { 
+        $gte: minBudget, 
+        $lte: maxBudget 
+      } 
+    });
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.findByBudgetRange');
+    const tasks = Array.from(inMemoryTasks.values());
+    const filteredTasks = tasks.filter(task => 
+      task.budget >= minBudget && task.budget <= maxBudget
+    );
+    return createMockQuery(filteredTasks);
   }
 };
 

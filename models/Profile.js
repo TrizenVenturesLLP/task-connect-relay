@@ -201,6 +201,7 @@ const originalFindOne = Profile.findOne.bind(Profile);
 const originalFindOneAndUpdate = Profile.findOneAndUpdate.bind(Profile);
 const originalUpdateOne = Profile.updateOne.bind(Profile);
 const originalCreate = Profile.create.bind(Profile);
+const originalCountDocuments = Profile.countDocuments.bind(Profile);
 
 // Dynamic MongoDB connection check function
 function isMongoConnected() {
@@ -309,6 +310,47 @@ Profile.create = function(profileData) {
     // Use in-memory fallback
     console.log('⚠️ MongoDB not connected, using in-memory fallback for Profile.create');
     return Profile.createInMemory(profileData);
+  }
+};
+
+Profile.countDocuments = function(query = {}) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Profile.countDocuments');
+    return originalCountDocuments(query);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Profile.countDocuments');
+    const profiles = Array.from(inMemoryProfiles.values());
+    let filteredProfiles = profiles;
+    
+    if (query.uid) {
+      filteredProfiles = profiles.filter(profile => profile.uid === query.uid);
+    }
+    if (query.roles) {
+      filteredProfiles = profiles.filter(profile => 
+        profile.roles.some(role => query.roles.includes(role))
+      );
+    }
+    
+    return Promise.resolve(filteredProfiles.length);
+  }
+};
+
+// Additional useful method
+Profile.exists = function(query) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Profile.exists');
+    return Profile.countDocuments(query).then(count => count > 0);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Profile.exists');
+    const profiles = Array.from(inMemoryProfiles.values());
+    const exists = profiles.some(profile => {
+      return Object.keys(query).every(key => profile[key] === query[key]);
+    });
+    return Promise.resolve(exists);
   }
 };
 
