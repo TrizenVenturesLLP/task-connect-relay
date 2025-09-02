@@ -3,13 +3,80 @@ const router = express.Router();
 const Task = require('../models/Task');
 const { authMiddleware } = require('../middleware/auth');
 
+// Helper function to map frontend category values to backend enum values
+function mapCategoryToEnum(frontendCategory) {
+  if (!frontendCategory) return 'other';
+  
+  const categoryMap = {
+    // Exact matches
+    'cleaning': 'cleaning',
+    'repair': 'repair',
+    'delivery': 'delivery',
+    'assembly': 'assembly',
+    'gardening': 'gardening',
+    'petcare': 'petcare',
+    'other': 'other',
+    
+    // Frontend variations to backend enum
+    'Cleaning': 'cleaning',
+    'Repair': 'repair',
+    'Delivery': 'delivery',
+    'Assembly': 'assembly',
+    'Gardening': 'gardening',
+    'Pet Care': 'petcare',
+    'Petcare': 'petcare',
+    'Other': 'other',
+    
+    // Common variations
+    'Home Services': 'other',
+    'Home Cleaning': 'cleaning',
+    'House Cleaning': 'cleaning',
+    'Plumbing': 'repair',
+    'Electrical': 'repair',
+    'Carpentry': 'repair',
+    'Moving': 'delivery',
+    'Transport': 'delivery',
+    'Furniture Assembly': 'assembly',
+    'IKEA Assembly': 'assembly',
+    'Garden Maintenance': 'gardening',
+    'Pet Sitting': 'petcare',
+    'Dog Walking': 'petcare',
+    'General': 'other',
+    'Miscellaneous': 'other'
+  };
+  
+  // Try exact match first, then case-insensitive match
+  const normalizedCategory = frontendCategory.toString().toLowerCase().trim();
+  
+  // Check exact match
+  if (categoryMap[frontendCategory]) {
+    return categoryMap[frontendCategory];
+  }
+  
+  // Check normalized match
+  if (categoryMap[normalizedCategory]) {
+    return categoryMap[normalizedCategory];
+  }
+  
+  // Check if it contains any of our keywords
+  for (const [key, value] of Object.entries(categoryMap)) {
+    if (normalizedCategory.includes(key.toLowerCase()) || key.toLowerCase().includes(normalizedCategory)) {
+      return value;
+    }
+  }
+  
+  // Default fallback
+  console.log(`⚠️ Unknown category: "${frontendCategory}", defaulting to "other"`);
+  return 'other';
+}
+
 // Get all tasks (with optional filtering)
 router.get('/', authMiddleware, async (req, res) => {
   try {
     const { status, category, city, limit = 50, page = 1 } = req.query;
     const skip = (page - 1) * limit;
-    
-    
+
+
     let query = {};
     if (status) query.status = status;
     if (category) query.category = category;
@@ -44,8 +111,13 @@ router.get('/my-tasks', authMiddleware, async (req, res) => {
     const { status, limit = 50, page = 1 } = req.query;
     const skip = (page - 1) * limit;
     
+    console.log('🔍 My Tasks - User UID:', req.user.uid);
+    console.log('🔍 My Tasks - Query params:', { status, limit, page, skip });
+    
     let query = { creatorUid: req.user.uid };
     if (status) query.status = status;
+    
+    console.log('🔍 My Tasks - MongoDB query:', query);
     
     const tasks = await Task.find(query)
       .sort({ createdAt: -1 })
@@ -54,6 +126,9 @@ router.get('/my-tasks', authMiddleware, async (req, res) => {
       .lean();
     
     const total = await Task.countDocuments(query);
+    
+    console.log('🔍 My Tasks - Found tasks:', tasks.length);
+    console.log('🔍 My Tasks - Total count:', total);
     
     res.json({
       tasks,
@@ -89,18 +164,70 @@ router.get('/:id', authMiddleware, async (req, res) => {
 // Create a new task
 router.post('/', authMiddleware, async (req, res) => {
   try {
+    console.log('🔍 Creating task with data:', req.body);
+    console.log('🔍 User UID:', req.user.uid);
+    
+    // Map frontend data to backend schema
+    const frontendCategory = req.body.category || req.body.type;
+    const mappedCategory = mapCategoryToEnum(frontendCategory);
+    
+    console.log(`🔍 Category mapping: "${frontendCategory}" → "${mappedCategory}"`);
+    
     const taskData = {
-      ...req.body,
+      title: req.body.title,
+      description: req.body.description,
+      category: mappedCategory, // Map to valid enum
+      subcategory: req.body.subcategory,
+      budget: req.body.budget?.amount || req.body.budget, // Handle both object and number
+      budgetType: req.body.budgetType || 'fixed',
+      location: {
+        type: 'Point',
+        coordinates: req.body.location?.coordinates || [0, 0], // Default coordinates
+        address: req.body.location?.address || req.body.location || 'Address not specified',
+        city: req.body.location?.city || req.body.city || 'City not specified',
+        state: req.body.location?.state || req.body.state || 'State not specified',
+        country: req.body.location?.country || req.body.country || 'India'
+      },
+      urgency: req.body.urgency || 'medium',
+      priority: req.body.priority || 'normal',
+      requesterId: req.user.uid, // Use authenticated user's UID
+      requesterName: req.body.requesterName || req.body.creatorName || 'Anonymous', // Fallback name
       creatorUid: req.user.uid,
+      estimatedDuration: req.body.estimatedDuration || req.body.duration,
+      flexibility: req.body.flexibility || 'flexible',
+      requirements: req.body.requirements || req.body.skillsRequired || [],
+      tags: req.body.tags || [],
       status: 'open',
       createdAt: new Date(),
       updatedAt: new Date()
     };
     
+    console.log('🔍 Mapped task data:', taskData);
+    
     const task = await Task.create(taskData);
+    console.log('✅ Task created successfully:', task._id);
     res.status(201).json(task);
   } catch (error) {
     console.error('❌ Error creating task:', error);
+    
+    // Provide better error messages
+    if (error.name === 'ValidationError') {
+      const validationErrors = Object.keys(error.errors).map(key => 
+        `${key}: ${error.errors[key].message}`
+      ).join(', ');
+      
+      return res.status(400).json({ 
+        error: 'Task validation failed', 
+        details: validationErrors,
+        suggestions: {
+          budget: 'Budget should be a number (e.g., 1000)',
+          category: 'Category is required (e.g., cleaning, repair, delivery)',
+          location: 'City and state are required',
+          requesterName: 'Requester name is required'
+        }
+      });
+    }
+    
     res.status(500).json({ error: 'Could not create task', details: error.message });
   }
 });

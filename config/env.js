@@ -34,81 +34,57 @@ const envSchema = z.object({
 function getCorsConfig(env) {
   const isDevelopment = env.NODE_ENV === 'development';
   
-  if (isDevelopment) {
-    // Development: Allow all localhost origins
-    return {
-      origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        
-        // Allow any localhost origin in development
-        if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
-          return callback(null, true);
-        }
-        
-        // Also allow production origins in development for testing
-        const allowedOrigins = [
-          'https://extrahand.in',
-          'https://www.extrahand.in',
-          'https://extrahandbackend.llp.trizenventures.com'
-        ];
-        
-        if (allowedOrigins.includes(origin)) {
-          return callback(null, true);
-        }
-        
-        callback(new Error('Not allowed by CORS'));
-      },
-      credentials: true,
-      optionsSuccessStatus: 204,
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-      allowedHeaders: [
-        'Origin',
-        'X-Requested-With',
-        'Content-Type',
-        'Accept',
-        'Authorization',
-        'Cache-Control',
-        'Pragma'
-      ],
-      preflightContinue: false
-    };
-  } else {
-    // Production: Use strict CORS settings
-    const allowedOrigins = env.CORS_ORIGIN ? 
-      env.CORS_ORIGIN.split(',') : 
-      [
-        'https://extrahand.in',
-        'https://www.extrahand.in',
-        'https://extrahandbackend.llp.trizenventures.com'
-      ];
-    
-    return {
-      origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        
-        if (allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
-      },
-      credentials: true,
-      optionsSuccessStatus: 204,
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-      allowedHeaders: [
-        'Origin',
-        'X-Requested-With',
-        'Content-Type',
-        'Accept',
-        'Authorization',
-        'Cache-Control',
-        'Pragma'
-      ],
-      preflightContinue: false
-    };
+  // Define allowed origins for both development and production
+  const allowedOrigins = [
+    'https://extrahand.in',
+    'https://www.extrahand.in',
+    'http://localhost:3000',
+    'https://extrahandbackend.llp.trizenventures.com',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:4000'
+  ];
+  
+  // Add custom origins from environment if provided
+  if (env.CORS_ORIGIN) {
+    const customOrigins = env.CORS_ORIGIN.split(',').map(origin => origin.trim());
+    allowedOrigins.push(...customOrigins);
   }
+  
+
+  console.log(`🌐 CORS Configuration - Environment: ${env.NODE_ENV}`);
+  console.log(`🌐 CORS Allowed Origins:`, allowedOrigins);
+  
+  return {
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) {
+        console.log('🔓 CORS: Allowing request with no origin');
+        return callback(null, true);
+      }
+      
+      if (allowedOrigins.includes(origin)) {
+        console.log(`🔓 CORS: Allowing origin: ${origin}`);
+        callback(null, true);
+      } else {
+        console.log(`🔒 CORS: Blocking origin: ${origin}`);
+        callback(new Error(`Origin ${origin} not allowed by CORS policy`));
+      }
+    },
+    credentials: true,
+    optionsSuccessStatus: 204,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: [
+      'Origin',
+      'X-Requested-With',
+      'Content-Type',
+      'Accept',
+      'Authorization',
+      'Cache-Control',
+      'Pragma',
+      'X-API-Key'
+    ],
+    preflightContinue: false
+  };
 }
 
 function validateEnv() {
