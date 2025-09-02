@@ -50,7 +50,7 @@ function getCorsConfig(env) {
         const allowedOrigins = [
           'https://extrahand.in',
           'https://www.extrahand.in',
-          'http://localhost:4000'
+          'https://extrahandbackend.llp.trizenventures.com'
         ];
         
         if (allowedOrigins.includes(origin)) {
@@ -80,7 +80,7 @@ function getCorsConfig(env) {
       [
         'https://extrahand.in',
         'https://www.extrahand.in',
-        'http://localhost:4000'
+        'https://extrahandbackend.llp.trizenventures.com'
       ];
     
     return {

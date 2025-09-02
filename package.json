@@ -9,7 +9,7 @@
     "prod": "NODE_ENV=production node server.js",
     "test": "echo \"No tests specified\" && exit 0",
     "lint": "echo \"No linting configured\" && exit 0",
-    "health": "curl -f http://localhost:4000/api/v1/health || exit 1",
+    "health": "curl -f https://extrahandbackend.llp.trizenventures.com/api/v1/health || exit 1",
     "seed": "node seed-tasks.js"
   },
   "engines": { "node": ">=18" },
