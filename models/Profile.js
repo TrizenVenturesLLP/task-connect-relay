@@ -1,247 +1,316 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 
-const ProfileSchema = new Schema(
-  {
-    // Basic user information
-    uid: { 
-      type: String, 
-      index: true, 
-      unique: true, 
-      required: true 
-    },
-    name: { 
-      type: String, 
-      required: true, 
-      maxlength: 100 
-    },
-    email: { 
-      type: String, 
-      index: true, 
-      lowercase: true,
-      validate: {
-        validator: function(v) {
-          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-        },
-        message: 'Invalid email format'
-      }
-    },
-    
-    // User roles and type
-    roles: { 
-      type: [String], 
-      index: true, 
-      default: ['both'],
-      enum: ['poster', 'tasker', 'both']
-    },
-    userType: { 
-      type: String, 
-      enum: ['individual', 'business'], 
-      default: 'individual' 
-    },
-    
-    // Business-specific fields
-    business: {
-      name: String,
-      registrationNumber: String,
-      taxId: String,
-      website: String,
-      description: String
-    },
-    
-    // Location with geospatial indexing
-    location: {
-      type: {
-        type: String,
-        enum: ['Point'],
-        default: 'Point'
-      },
-      coordinates: {
-        type: [Number], // [longitude, latitude]
-        index: '2dsphere'
-      },
-      address: String,
-      addressDetails: {
-        doorNo: String,
-        area: String,
-        city: { type: String, index: true },
-        state: { type: String, index: true },
-        pinCode: String,
-        country: { type: String, index: true }
-      },
-      isPublic: { type: Boolean, default: true }
-    },
-    
-    // Skills and expertise
-    skills: { 
-      type: [String], 
-      index: true, 
-      default: [],
-      validate: {
-        validator: function(v) {
-          return v.length <= 50; // Max 50 skills
-        },
-        message: 'Skills array cannot exceed 50 items'
-      }
-    },
-    
-    // Availability and scheduling
-    availability: {
-      schedule: {
-        monday: { available: Boolean, slots: [String] },
-        tuesday: { available: Boolean, slots: [String] },
-        wednesday: { available: Boolean, slots: [String] },
-        thursday: { available: Boolean, slots: [String] },
-        friday: { available: Boolean, slots: [String] },
-        saturday: { available: Boolean, slots: [String] },
-        sunday: { available: Boolean, slots: [String] }
-      },
-      timezone: { type: String, default: 'Asia/Kolkata' },
-      instantBooking: { type: Boolean, default: false },
-      advanceBooking: { type: Number, default: 24 } // hours
-    },
-    
-    // Contact information
-    phone: { 
+// In-memory storage for development when MongoDB is not available
+const inMemoryProfiles = new Map();
+
+// Profile Schema
+const ProfileSchema = new Schema({
+  uid: {
+    type: String,
+    required: true,
+    unique: true,
+    index: true
+  },
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  email: {
+    type: String,
+    trim: true,
+    lowercase: true
+  },
+  phone: {
+    type: String,
+    trim: true
+  },
+  roles: {
+    type: [String],
+    enum: ['tasker', 'requester', 'both'],
+    default: ['both']
+  },
+  userType: {
+    type: String,
+    enum: ['individual', 'business'],
+    default: 'individual'
+  },
+  location: {
+    type: {
       type: String,
-      validate: {
-        validator: function(v) {
-          return /^\+?[\d\s\-\(\)]+$/.test(v);
-        },
-        message: 'Invalid phone number format'
-      }
+      enum: ['Point'],
+      default: 'Point'
     },
-    photoURL: String,
-    
-    // Ratings and reviews
-    rating: { 
-      type: Number, 
-      min: 0, 
-      max: 5, 
-      default: 0 
+    coordinates: {
+      type: [Number],
+      required: true,
+      index: '2dsphere'
     },
-    totalReviews: { type: Number, default: 0 },
-    totalTasks: { type: Number, default: 0 },
-    completedTasks: { type: Number, default: 0 },
-    
-    // Verification and trust
-    isVerified: { type: Boolean, default: false, index: true },
-    verificationDocuments: [String],
-    backgroundCheck: {
-      status: { type: String, enum: ['pending', 'passed', 'failed'], default: 'pending' },
-      completedAt: Date
+    address: String,
+    doorNo: String,
+    area: String,
+    city: String,
+    state: String,
+    pinCode: String,
+    country: String
+  },
+  skills: [{
+    name: String,
+    level: {
+      type: String,
+      enum: ['beginner', 'intermediate', 'expert'],
+      default: 'beginner'
     },
-    
-    // Preferences and settings
-    preferences: {
-      maxDistance: { type: Number, default: 50 }, // km
-      minBudget: { type: Number, default: 0 },
-      maxBudget: { type: Number, default: 10000 },
-      preferredCategories: [String],
-      notifications: {
-        email: { type: Boolean, default: true },
-        push: { type: Boolean, default: true },
-        sms: { type: Boolean, default: false }
-      }
+    verified: {
+      type: Boolean,
+      default: false
+    }
+  }],
+  rating: {
+    type: Number,
+    default: 0,
+    min: 0,
+    max: 5
+  },
+  totalReviews: {
+    type: Number,
+    default: 0
+  },
+  totalTasks: {
+    type: Number,
+    default: 0
+  },
+  completedTasks: {
+    type: Number,
+    default: 0
+  },
+  isVerified: {
+    type: Boolean,
+    default: false
+  },
+  isActive: {
+    type: Boolean,
+    default: true
+  },
+  onboardingStatus: {
+    isCompleted: {
+      type: Boolean,
+      default: false
     },
-    
-    // Legal and consent
-    agreeUpdates: { type: Boolean, default: false },
-    agreeTerms: { type: Boolean, default: false },
-    privacySettings: {
-      profileVisibility: { type: String, enum: ['public', 'private'], default: 'public' },
-      locationSharing: { type: Boolean, default: true },
-      contactSharing: { type: Boolean, default: false }
-    },
-    
-    // Timestamps
-    createdAt: { type: Date, default: Date.now, index: true },
-    updatedAt: { type: Date, default: Date.now },
-    lastActive: { type: Date, default: Date.now, index: true },
-    
-    // Account status
-    isActive: { type: Boolean, default: true, index: true },
-    isSuspended: { type: Boolean, default: false },
-    suspensionReason: String,
-    
-    // Onboarding status
-    onboardingStatus: {
-      isCompleted: { type: Boolean, default: false, index: true },
-      completedSteps: {
-        location: { type: Boolean, default: false },
-        roles: { type: Boolean, default: false },
-        profile: { type: Boolean, default: false }
+    completedSteps: {
+      location: {
+        type: Boolean,
+        default: false
       },
-      completedAt: Date,
-      lastStep: { type: String, enum: ['location', 'roles', 'profile', 'complete'], default: 'location' }
+      roles: {
+        type: Boolean,
+        default: false
+      },
+      profile: {
+        type: Boolean,
+        default: false
+      }
+    },
+    lastStep: {
+      type: String,
+      enum: ['location', 'roles', 'profile'],
+      default: 'location'
     }
   },
-  { 
-    versionKey: false,
-    timestamps: true,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true }
+  agreeUpdates: {
+    type: Boolean,
+    default: false
+  },
+  agreeTerms: {
+    type: Boolean,
+    default: false
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  },
+  lastActive: {
+    type: Date,
+    default: Date.now
   }
-);
+}, {
+  timestamps: true
+});
 
-// Compound indexes for common queries
-ProfileSchema.index({ roles: 1, isActive: 1 });
+// Index for geospatial queries
 ProfileSchema.index({ 'location.coordinates': '2dsphere' });
-ProfileSchema.index({ skills: 1, isActive: 1 });
-ProfileSchema.index({ rating: -1, totalReviews: -1 });
-ProfileSchema.index({ isVerified: 1, rating: -1 });
-ProfileSchema.index({ userType: 1, isActive: 1 });
 
-// Virtual for completion rate
-ProfileSchema.virtual('completionRate').get(function() {
-  return this.totalTasks > 0 ? (this.completedTasks / this.totalTasks) * 100 : 0;
-});
+// In-memory methods
+ProfileSchema.statics.findOneInMemory = function(query) {
+  if (query.uid) {
+    return inMemoryProfiles.get(query.uid) || null;
+  }
+  // For other queries, return first match (simplified)
+  for (const profile of inMemoryProfiles.values()) {
+    if (Object.keys(query).every(key => profile[key] === query[key])) {
+      return profile;
+    }
+  }
+  return null;
+};
 
-// Virtual for average rating
-ProfileSchema.virtual('averageRating').get(function() {
-  return this.totalReviews > 0 ? this.rating : 0;
-});
+ProfileSchema.statics.findOneAndUpdateInMemory = function(query, update, options) {
+  const existingProfile = this.findOneInMemory(query);
+  if (!existingProfile) {
+    return null;
+  }
+  
+  const updatedProfile = { ...existingProfile, ...update };
+  if (query.uid) {
+    inMemoryProfiles.set(query.uid, updatedProfile);
+  }
+  return updatedProfile;
+};
 
-// Pre-save middleware to update timestamps
-ProfileSchema.pre('save', function(next) {
-  this.updatedAt = new Date();
-  this.lastActive = new Date();
-  next();
-});
+ProfileSchema.statics.createInMemory = function(profileData) {
+  const profile = { ...profileData, createdAt: new Date(), updatedAt: new Date() };
+  inMemoryProfiles.set(profile.uid, profile);
+  return profile;
+};
 
-// Static method to find nearby users
-ProfileSchema.statics.findNearby = function(coordinates, maxDistance = 50000) {
-  return this.find({
-    'location.coordinates': {
-      $near: {
-        $geometry: {
-          type: 'Point',
-          coordinates: coordinates
-        },
-        $maxDistance: maxDistance
-      }
+// Helper function to create mock query results
+function createMockQuery(result) {
+  return {
+    lean: function() {
+      return result;
     },
-    isActive: true
-  });
+    exec: function() {
+      return Promise.resolve(result);
+    },
+    then: function(resolve, reject) {
+      return Promise.resolve(result).then(resolve, reject);
+    }
+  };
+}
+
+// Create the model
+const Profile = model('Profile', ProfileSchema);
+
+// Store original methods before overriding
+const originalFindOne = Profile.findOne.bind(Profile);
+const originalFindOneAndUpdate = Profile.findOneAndUpdate.bind(Profile);
+const originalUpdateOne = Profile.updateOne.bind(Profile);
+const originalCreate = Profile.create.bind(Profile);
+
+// Dynamic MongoDB connection check function
+function isMongoConnected() {
+  return mongoose.connection.readyState === 1;
+}
+
+// Override methods with dynamic connection checking
+Profile.findOne = function(query) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Profile.findOne');
+    return originalFindOne(query);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Profile.findOne');
+    const result = Profile.findOneInMemory(query);
+    return createMockQuery(result);
+  }
 };
 
-// Static method to find users by skills
-ProfileSchema.statics.findBySkills = function(skills, limit = 50) {
-  return this.find({
-    skills: { $in: skills },
-    isActive: true,
-    roles: { $in: ['tasker', 'both'] }
-  })
-  .sort({ rating: -1, totalReviews: -1 })
-  .limit(limit);
+Profile.findOneAndUpdate = function(query, update, options) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Profile.findOneAndUpdate');
+    return originalFindOneAndUpdate(query, update, options);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Profile.findOneAndUpdate');
+    const result = Profile.findOneAndUpdateInMemory(query, update, options);
+    return createMockQuery(result);
+  }
 };
 
-// Instance method to update rating
-ProfileSchema.methods.updateRating = function(newRating) {
-  const totalRating = (this.rating * this.totalReviews) + newRating;
-  this.totalReviews += 1;
-  this.rating = totalRating / this.totalReviews;
-  return this.save();
+Profile.updateOne = function(query, update, options) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Profile.updateOne');
+    return originalUpdateOne(query, update, options);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Profile.updateOne');
+    const uid = query.uid;
+    if (!uid) {
+      return createMockQuery({ modifiedCount: 0 });
+    }
+    
+    const existingProfile = inMemoryProfiles.get(uid);
+    
+    // Handle $set operator like MongoDB does
+    let updateData = update;
+    if (update.$set) {
+      updateData = update.$set;
+    }
+    
+    if (!existingProfile) {
+      // Create new profile if it doesn't exist (upsert behavior)
+      const newProfile = {
+        uid,
+        name: 'User', // Default name
+        email: null,
+        roles: ['both'], // Default roles
+        userType: 'individual',
+        skills: [],
+        rating: 0,
+        totalReviews: 0,
+        totalTasks: 0,
+        completedTasks: 0,
+        isVerified: false,
+        isActive: true,
+        onboardingStatus: {
+          isCompleted: false,
+          completedSteps: { location: false, roles: false, profile: false },
+          lastStep: 'location'
+        },
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        lastActive: new Date(),
+        ...updateData // Override defaults with provided data
+      };
+      inMemoryProfiles.set(uid, newProfile);
+      console.log('✅ Created new profile in memory for user:', uid);
+      console.log('📝 New profile data:', JSON.stringify(newProfile, null, 2));
+      return createMockQuery({ modifiedCount: 1 });
+    }
+    
+    const updatedProfile = {
+      ...existingProfile,
+      ...updateData,
+      uid,
+      updatedAt: new Date()
+    };
+    
+    inMemoryProfiles.set(uid, updatedProfile);
+    console.log('✅ Updated existing profile in memory for user:', uid);
+    console.log('📝 Updated profile data:', JSON.stringify(updatedProfile, null, 2));
+    return createMockQuery({ modifiedCount: 1 });
+  }
 };
 
-module.exports = model('Profile', ProfileSchema);
+Profile.create = function(profileData) {
+  if (isMongoConnected()) {
+    // Use real MongoDB - call original method
+    console.log('✅ Using real MongoDB for Profile.create');
+    return originalCreate(profileData);
+  } else {
+    // Use in-memory fallback
+    console.log('⚠️ MongoDB not connected, using in-memory fallback for Profile.create');
+    return Profile.createInMemory(profileData);
+  }
+};
+
+module.exports = Profile;
 

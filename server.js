@@ -1,4 +1,18 @@
 require('dotenv').config();
+
+// Force development mode for local development
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
+  // Check if we're running locally (not in Docker/container)
+  const isLocalDevelopment = process.platform === 'win32' || 
+                           process.env.HOSTNAME === undefined ||
+                           process.env.HOSTNAME.includes('localhost');
+  
+  if (isLocalDevelopment) {
+    process.env.NODE_ENV = 'development';
+    console.log('🔧 Forcing development mode for local environment');
+  }
+}
+
 const app = require('./app');
 const { connectMongo } = require('./mongo');
 const logger = require('./config/logger');
