@@ -72,7 +72,7 @@ app.use((req, res, next) => {
       'https://extrahand.in',
       'https://www.extrahand.in',
       'http://localhost:3000',
-      'http://localhost:4000',
+      'https://extrahandbackend.llp.trizenventures.com',
       'http://127.0.0.1:3000',
       'http://127.0.0.1:4000'
     ];
