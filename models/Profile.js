@@ -6,19 +6,19 @@ const inMemoryProfiles = new Map();
 
 // Profile Schema
 const ProfileSchema = new Schema({
-  uid: {
-    type: String,
+    uid: { 
+      type: String, 
     required: true,
-    unique: true,
+      unique: true, 
     index: true
-  },
-  name: {
-    type: String,
-    required: true,
+    },
+    name: { 
+      type: String, 
+      required: true, 
     trim: true
-  },
-  email: {
-    type: String,
+    },
+    email: { 
+      type: String, 
     trim: true,
     lowercase: true
   },
@@ -26,33 +26,33 @@ const ProfileSchema = new Schema({
     type: String,
     trim: true
   },
-  roles: {
-    type: [String],
+    roles: { 
+      type: [String], 
     enum: ['tasker', 'requester', 'both'],
     default: ['both']
-  },
-  userType: {
-    type: String,
-    enum: ['individual', 'business'],
-    default: 'individual'
-  },
-  location: {
-    type: {
-      type: String,
-      enum: ['Point'],
-      default: 'Point'
     },
-    coordinates: {
+    userType: { 
+      type: String, 
+      enum: ['individual', 'business'], 
+      default: 'individual' 
+    },
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        default: 'Point'
+      },
+      coordinates: {
       type: [Number],
       required: true,
-      index: '2dsphere'
-    },
-    address: String,
-    doorNo: String,
-    area: String,
+        index: '2dsphere'
+      },
+      address: String,
+        doorNo: String,
+        area: String,
     city: String,
     state: String,
-    pinCode: String,
+        pinCode: String,
     country: String
   },
   skills: [{
@@ -61,16 +61,16 @@ const ProfileSchema = new Schema({
       type: String,
       enum: ['beginner', 'intermediate', 'expert'],
       default: 'beginner'
-    },
+        },
     verified: {
       type: Boolean,
       default: false
-    }
+      }
   }],
-  rating: {
-    type: Number,
+    rating: { 
+      type: Number, 
     default: 0,
-    min: 0,
+      min: 0, 
     max: 5
   },
   totalReviews: {
@@ -79,8 +79,8 @@ const ProfileSchema = new Schema({
   },
   totalTasks: {
     type: Number,
-    default: 0
-  },
+      default: 0 
+    },
   completedTasks: {
     type: Number,
     default: 0
@@ -93,12 +93,12 @@ const ProfileSchema = new Schema({
     type: Boolean,
     default: true
   },
-  onboardingStatus: {
+    onboardingStatus: {
     isCompleted: {
       type: Boolean,
       default: false
     },
-    completedSteps: {
+      completedSteps: {
       location: {
         type: Boolean,
         default: false
@@ -209,7 +209,7 @@ function isMongoConnected() {
 }
 
 // Override methods with dynamic connection checking
-Profile.findOne = function(query) {
+  Profile.findOne = function(query) {
   if (isMongoConnected()) {
     // Use real MongoDB - call original method
     console.log('✅ Using real MongoDB for Profile.findOne');
@@ -219,10 +219,10 @@ Profile.findOne = function(query) {
     console.log('⚠️ MongoDB not connected, using in-memory fallback for Profile.findOne');
     const result = Profile.findOneInMemory(query);
     return createMockQuery(result);
-  }
-};
-
-Profile.findOneAndUpdate = function(query, update, options) {
+    }
+  };
+  
+  Profile.findOneAndUpdate = function(query, update, options) {
   if (isMongoConnected()) {
     // Use real MongoDB - call original method
     console.log('✅ Using real MongoDB for Profile.findOneAndUpdate');
@@ -232,10 +232,10 @@ Profile.findOneAndUpdate = function(query, update, options) {
     console.log('⚠️ MongoDB not connected, using in-memory fallback for Profile.findOneAndUpdate');
     const result = Profile.findOneAndUpdateInMemory(query, update, options);
     return createMockQuery(result);
-  }
-};
-
-Profile.updateOne = function(query, update, options) {
+    }
+  };
+  
+  Profile.updateOne = function(query, update, options) {
   if (isMongoConnected()) {
     // Use real MongoDB - call original method
     console.log('✅ Using real MongoDB for Profile.updateOne');
@@ -299,9 +299,9 @@ Profile.updateOne = function(query, update, options) {
     console.log('📝 Updated profile data:', JSON.stringify(updatedProfile, null, 2));
     return createMockQuery({ modifiedCount: 1 });
   }
-};
-
-Profile.create = function(profileData) {
+  };
+  
+  Profile.create = function(profileData) {
   if (isMongoConnected()) {
     // Use real MongoDB - call original method
     console.log('✅ Using real MongoDB for Profile.create');

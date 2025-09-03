@@ -1,4 +1,6 @@
 const { z } = require('zod');
+const fs = require('fs');
+const path = require('path');
 
 // Define environment schema
 const envSchema = z.object({
@@ -39,7 +41,7 @@ function getCorsConfig(env) {
     'https://extrahand.in',
     'https://www.extrahand.in',
     'http://localhost:3000',
-    'https://extrahandbackend.llp.trizenventures.com',
+    'http://localhost:4000',
     'http://127.0.0.1:3000',
     'http://127.0.0.1:4000'
   ];
@@ -91,14 +93,29 @@ function validateEnv() {
   try {
     const env = envSchema.parse(process.env);
     
-    // Additional validation for Firebase
-    const hasFirebaseCredentials = 
-      (env.FIREBASE_PROJECT_ID && env.FIREBASE_CLIENT_EMAIL && env.FIREBASE_PRIVATE_KEY) ||
-      env.FIREBASE_SERVICE_ACCOUNT_PATH ||
-      process.env.GOOGLE_APPLICATION_CREDENTIALS;
+    // Check for Firebase credentials - either environment variables or service account file
+    const hasFirebaseEnvVars = env.FIREBASE_PROJECT_ID && env.FIREBASE_CLIENT_EMAIL && env.FIREBASE_PRIVATE_KEY;
+    const hasFirebaseServiceAccountPath = env.FIREBASE_SERVICE_ACCOUNT_PATH;
+    const hasGoogleCredentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+    
+    // Check if serviceAccountKey.json exists in the current directory
+    const serviceAccountPath = path.join(__dirname, '..', 'serviceAccountKey.json');
+    const hasServiceAccountFile = fs.existsSync(serviceAccountPath);
+    
+    const hasFirebaseCredentials = hasFirebaseEnvVars || hasFirebaseServiceAccountPath || hasGoogleCredentials || hasServiceAccountFile;
     
     if (!hasFirebaseCredentials && env.NODE_ENV === 'production') {
-      throw new Error('Firebase credentials must be provided in production');
+      throw new Error('Firebase credentials must be provided in production. Either set environment variables or ensure serviceAccountKey.json exists.');
+    }
+    
+    if (hasServiceAccountFile) {
+      console.log('✅ Firebase service account file found: serviceAccountKey.json');
+    } else if (hasFirebaseEnvVars) {
+      console.log('✅ Firebase credentials found in environment variables');
+    } else if (hasFirebaseServiceAccountPath) {
+      console.log('✅ Firebase service account path specified:', env.FIREBASE_SERVICE_ACCOUNT_PATH);
+    } else if (hasGoogleCredentials) {
+      console.log('✅ Google Application Credentials found');
     }
     
     return env;

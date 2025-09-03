@@ -89,7 +89,7 @@ router.get('/', authMiddleware, async (req, res) => {
       .lean();
     
     const total = await Task.countDocuments(query);
-    
+
     res.json({
       tasks,
       pagination: {

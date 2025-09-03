@@ -3,7 +3,7 @@ FROM node:18-alpine AS base
 
 # Install security updates and necessary packages
 RUN apk update && apk upgrade && \
-    apk add --no-cache dumb-init && \
+    apk add --no-cache dumb-init curl && \
     rm -rf /var/cache/apk/*
 
 # Create app directory with proper permissions
@@ -68,11 +68,9 @@ USER nodeuser
 # Expose port
 EXPOSE 4000
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD node -e "require('http').get('https://extrahandbackend.llp.trizenventures.com/api/v1/health', (res) => { \
-        process.exit(res.statusCode === 200 ? 0 : 1) \
-    }).on('error', () => process.exit(1))"
+# ✅ FIXED HEALTH CHECK - Check localhost inside container
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+    CMD curl -f http://localhost:4000/api/v1/health || exit 1
 
 # Use dumb-init for proper signal handling
 ENTRYPOINT ["dumb-init", "--"]

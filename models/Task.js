@@ -116,8 +116,8 @@ const TaskSchema = new Schema({
     maxlength: 2000
   },
   category: {
-    type: String,
-    required: true,
+      type: String, 
+      required: true, 
     enum: ['cleaning', 'repair', 'delivery', 'assembly', 'gardening', 'petcare', 'other'],
     index: true
   },
@@ -136,17 +136,17 @@ const TaskSchema = new Schema({
     enum: ['fixed', 'hourly', 'negotiable'],
     default: 'fixed'
   },
-  location: {
-    type: {
-      type: String,
-      enum: ['Point'],
-      default: 'Point'
-    },
-    coordinates: {
-      type: [Number], // [longitude, latitude]
-      required: true,
-      index: '2dsphere'
-    },
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude]
+        required: true,
+        index: '2dsphere'
+      },
     address: {
       type: String,
       required: true
@@ -172,10 +172,10 @@ const TaskSchema = new Schema({
     default: 'medium',
     index: true
   },
-  status: {
-    type: String,
+    status: { 
+      type: String, 
     enum: ['open', 'assigned', 'in_progress', 'completed', 'cancelled'],
-    default: 'open',
+      default: 'open',
     index: true
   },
   priority: {
@@ -184,8 +184,8 @@ const TaskSchema = new Schema({
     default: 'normal'
   },
   requesterId: {
-    type: String,
-    required: true,
+      type: String, 
+      required: true,
     index: true
   },
   requesterName: {
@@ -193,7 +193,7 @@ const TaskSchema = new Schema({
     required: true
   },
   assignedTo: {
-    type: String,
+      type: String, 
     index: true
   },
   assignedToName: String,
@@ -216,7 +216,7 @@ const TaskSchema = new Schema({
   },
   requirements: [String],
   attachments: [{
-    type: String,
+      type: String, 
     url: String,
     filename: String,
     uploadedAt: Date
@@ -383,7 +383,7 @@ function isMongoConnected() {
 }
 
 // Override methods with dynamic connection checking
-Task.find = function(query = {}) {
+  Task.find = function(query = {}) {
   if (isMongoConnected()) {
     // Use real MongoDB - call original method
     console.log('✅ Using real MongoDB for Task.find');
@@ -394,9 +394,9 @@ Task.find = function(query = {}) {
     const result = Task.findInMemory(query);
     return createMockQuery(result);
   }
-};
-
-Task.findOne = function(query) {
+  };
+  
+  Task.findOne = function(query) {
   if (isMongoConnected()) {
     // Use real MongoDB - call original method
     console.log('✅ Using real MongoDB for Task.findOne');
@@ -407,9 +407,9 @@ Task.findOne = function(query) {
     const result = Task.findOneInMemory(query);
     return createMockQuery(result);
   }
-};
-
-Task.findById = function(id) {
+  };
+  
+  Task.findById = function(id) {
   if (isMongoConnected()) {
     // Use real MongoDB - call original method
     console.log('✅ Using real MongoDB for Task.findById');
@@ -420,9 +420,9 @@ Task.findById = function(id) {
     const result = Task.findOneInMemory({ _id: id });
     return createMockQuery(result);
   }
-};
-
-Task.create = function(taskData) {
+  };
+  
+  Task.create = function(taskData) {
   if (isMongoConnected()) {
     // Use real MongoDB - call original method
     console.log('✅ Using real MongoDB for Task.create');
@@ -432,9 +432,9 @@ Task.create = function(taskData) {
     console.log('⚠️ MongoDB not connected, using in-memory fallback for Task.create');
     return Task.createInMemory(taskData);
   }
-};
-
-Task.countDocuments = function(query = {}) {
+  };
+  
+  Task.countDocuments = function(query = {}) {
   if (isMongoConnected()) {
     // Use real MongoDB - call original method
     console.log('✅ Using real MongoDB for Task.countDocuments');
@@ -449,9 +449,9 @@ Task.countDocuments = function(query = {}) {
     }
     return Promise.resolve(filteredTasks.length);
   }
-};
-
-Task.updateOne = function(query, update) {
+  };
+  
+  Task.updateOne = function(query, update) {
   if (isMongoConnected()) {
     // Use real MongoDB - call original method
     console.log('✅ Using real MongoDB for Task.updateOne');
