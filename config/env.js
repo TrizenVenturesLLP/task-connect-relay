@@ -52,7 +52,6 @@ function getCorsConfig(env) {
     allowedOrigins.push(...customOrigins);
   }
   
-
   console.log(`🌐 CORS Configuration - Environment: ${env.NODE_ENV}`);
   console.log(`🌐 CORS Allowed Origins:`, allowedOrigins);
   
@@ -85,7 +84,10 @@ function getCorsConfig(env) {
       'Pragma',
       'X-API-Key'
     ],
-    preflightContinue: false
+    preflightContinue: false,
+    // Add explicit CORS headers for better compatibility
+    exposedHeaders: ['Content-Length', 'X-Foo'],
+    maxAge: 86400 // 24 hours
   };
 }
 

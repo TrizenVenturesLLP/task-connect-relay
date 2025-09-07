@@ -61,45 +61,6 @@ app.use('/api/', limiter);
 const corsOptions = getCorsConfig(env);
 app.use(cors(corsOptions));
 
-// Additional CORS headers for better compatibility
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  
-  // Set CORS headers based on origin
-  if (origin) {
-    // Check if origin is allowed
-    const allowedOrigins = [
-      'https://extrahand.in',
-      'https://www.extrahand.in',
-      'http://localhost:3000',
-      'https://extrahandbackend.llp.trizenventures.com',
-      'http://127.0.0.1:3000',
-      'http://127.0.0.1:4000'
-    ];
-    
-    if (allowedOrigins.includes(origin)) {
-      res.header('Access-Control-Allow-Origin', origin);
-      console.log(`🔓 CORS: Allowing origin: ${origin}`);
-    } else {
-      console.log(`🔒 CORS: Blocking origin: ${origin}`);
-    }
-  }
-  
-  // Set other CORS headers
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control, Pragma, X-API-Key');
-  
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    console.log('🔄 Handling preflight request for:', origin);
-    res.status(204).end();
-    return;
-  }
-  
-  next();
-});
-
 // Error handling for CORS
 app.use((err, req, res, next) => {
   if (err.message && err.message.includes('CORS')) {
