@@ -14,35 +14,28 @@ console.log('🔍 Environment Detection - Current values:', {
   CAPROVER: process.env.CAPROVER,
   DOCKER: process.env.DOCKER,
   PLATFORM: process.platform,
-  FORCE_PRODUCTION: process.env.FORCE_PRODUCTION
+  FORCE_PRODUCTION: process.env.FORCE_PRODUCTION,
+  ALL_ENV_KEYS: Object.keys(process.env).filter(key => key.includes('NODE') || key.includes('FORCE') || key.includes('HOSTNAME'))
 });
 
-// Check if we're running on a production server
-const isProductionServer = process.env.FORCE_PRODUCTION === 'true' ||
-                          (process.env.HOSTNAME && 
-                           !process.env.HOSTNAME.includes('localhost') && 
-                           !process.env.HOSTNAME.includes('127.0.0.1') &&
-                           (process.env.HOSTNAME.includes('trizenventures.com') || 
-                            process.env.HOSTNAME.includes('extrahand') ||
-                            process.env.CAPROVER === 'true' ||
-                            process.env.DOCKER === 'true'));
-
-if (isProductionServer) {
+// Force production mode if FORCE_PRODUCTION is set or if NODE_ENV is already production
+if (process.env.FORCE_PRODUCTION === 'true' || process.env.NODE_ENV === 'production') {
   process.env.NODE_ENV = 'production';
-  console.log('🚀 FORCING production mode for deployed server');
-  console.log('🔍 Production indicators detected:', {
-    HOSTNAME: process.env.HOSTNAME,
-    PORT: process.env.PORT,
-    CAPROVER: process.env.CAPROVER,
-    DOCKER: process.env.DOCKER,
-    FORCE_PRODUCTION: process.env.FORCE_PRODUCTION
+  console.log('🚀 FORCING production mode - FORCE_PRODUCTION or NODE_ENV=production detected');
+  console.log('🔍 Production indicators:', {
+    FORCE_PRODUCTION: process.env.FORCE_PRODUCTION,
+    NODE_ENV: process.env.NODE_ENV,
+    HOSTNAME: process.env.HOSTNAME
   });
-} else if (!process.env.NODE_ENV) {
-  // Only set development mode if NODE_ENV is not already set
+} else {
+  // Default to development for local development
   process.env.NODE_ENV = 'development';
   console.log('🔧 Setting development mode for local environment');
-} else {
-  console.log('🔍 NODE_ENV already set to:', process.env.NODE_ENV);
+  console.log('🔍 Development indicators:', {
+    FORCE_PRODUCTION: process.env.FORCE_PRODUCTION,
+    NODE_ENV: process.env.NODE_ENV,
+    HOSTNAME: process.env.HOSTNAME
+  });
 }
 
 console.log('🎯 Final NODE_ENV:', process.env.NODE_ENV);
