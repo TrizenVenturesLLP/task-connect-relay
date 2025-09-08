@@ -47,6 +47,10 @@
   "description": "Extrahand Backend API - Production Ready Node.js Express Server",
   "instanceCount": 1,
   "tags": ["nodejs", "express", "firebase", "mongodb", "api", "extrahand"],
+  "envVars": {
+    "NODE_ENV": "production",
+    "FORCE_PRODUCTION": "true"
+  },
   "volumes": [
     {
       "name": "app-logs",

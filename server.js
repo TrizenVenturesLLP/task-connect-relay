@@ -19,13 +19,19 @@ console.log('🔍 Environment Detection - Current values:', {
 });
 
 // Force production mode if FORCE_PRODUCTION is set or if NODE_ENV is already production
-if (process.env.FORCE_PRODUCTION === 'true' || process.env.NODE_ENV === 'production') {
+// Also force production if we're running on the production server
+const isProductionServer = process.env.FORCE_PRODUCTION === 'true' || 
+                          process.env.NODE_ENV === 'production' ||
+                          (process.env.HOSTNAME && process.env.HOSTNAME.includes('trizenventures.com'));
+
+if (isProductionServer) {
   process.env.NODE_ENV = 'production';
-  console.log('🚀 FORCING production mode - FORCE_PRODUCTION or NODE_ENV=production detected');
+  console.log('🚀 FORCING production mode - Production server detected');
   console.log('🔍 Production indicators:', {
     FORCE_PRODUCTION: process.env.FORCE_PRODUCTION,
     NODE_ENV: process.env.NODE_ENV,
-    HOSTNAME: process.env.HOSTNAME
+    HOSTNAME: process.env.HOSTNAME,
+    isProductionServer: isProductionServer
   });
 } else {
   // Default to development for local development
@@ -34,11 +40,18 @@ if (process.env.FORCE_PRODUCTION === 'true' || process.env.NODE_ENV === 'product
   console.log('🔍 Development indicators:', {
     FORCE_PRODUCTION: process.env.FORCE_PRODUCTION,
     NODE_ENV: process.env.NODE_ENV,
-    HOSTNAME: process.env.HOSTNAME
+    HOSTNAME: process.env.HOSTNAME,
+    isProductionServer: isProductionServer
   });
 }
 
 console.log('🎯 Final NODE_ENV:', process.env.NODE_ENV);
+console.log('🔍 All environment variables containing NODE, FORCE, or HOSTNAME:');
+Object.keys(process.env)
+  .filter(key => key.includes('NODE') || key.includes('FORCE') || key.includes('HOSTNAME') || key.includes('CAPROVER'))
+  .forEach(key => {
+    console.log(`  ${key}: ${process.env[key]}`);
+  });
 
 const app = require('./app');
 const { connectMongo } = require('./mongo');
