@@ -1,20 +1,51 @@
+// Load environment variables
 require('dotenv').config();
 
-// Set environment mode
-if (!process.env.NODE_ENV) {
-  // Check if we're running locally (not in Docker/container)
-  const isLocalDevelopment = process.platform === 'win32' || 
-                           process.env.HOSTNAME === undefined ||
-                           process.env.HOSTNAME.includes('localhost');
-  
-  if (isLocalDevelopment) {
-    process.env.NODE_ENV = 'development';
-    console.log('🔧 Setting development mode for local environment');
-  } else {
-    process.env.NODE_ENV = 'production';
-    console.log('🚀 Setting production mode for server environment');
-  }
+// Load production environment if it exists and we're in production
+if (process.env.NODE_ENV === 'production' || process.env.FORCE_PRODUCTION === 'true') {
+  require('dotenv').config({ path: './env.production' });
 }
+
+// Force production mode for deployed servers
+console.log('🔍 Environment Detection - Current values:', {
+  NODE_ENV: process.env.NODE_ENV,
+  HOSTNAME: process.env.HOSTNAME,
+  PORT: process.env.PORT,
+  CAPROVER: process.env.CAPROVER,
+  DOCKER: process.env.DOCKER,
+  PLATFORM: process.platform,
+  FORCE_PRODUCTION: process.env.FORCE_PRODUCTION
+});
+
+// Check if we're running on a production server
+const isProductionServer = process.env.FORCE_PRODUCTION === 'true' ||
+                          (process.env.HOSTNAME && 
+                           !process.env.HOSTNAME.includes('localhost') && 
+                           !process.env.HOSTNAME.includes('127.0.0.1') &&
+                           (process.env.HOSTNAME.includes('trizenventures.com') || 
+                            process.env.HOSTNAME.includes('extrahand') ||
+                            process.env.CAPROVER === 'true' ||
+                            process.env.DOCKER === 'true'));
+
+if (isProductionServer) {
+  process.env.NODE_ENV = 'production';
+  console.log('🚀 FORCING production mode for deployed server');
+  console.log('🔍 Production indicators detected:', {
+    HOSTNAME: process.env.HOSTNAME,
+    PORT: process.env.PORT,
+    CAPROVER: process.env.CAPROVER,
+    DOCKER: process.env.DOCKER,
+    FORCE_PRODUCTION: process.env.FORCE_PRODUCTION
+  });
+} else if (!process.env.NODE_ENV) {
+  // Only set development mode if NODE_ENV is not already set
+  process.env.NODE_ENV = 'development';
+  console.log('🔧 Setting development mode for local environment');
+} else {
+  console.log('🔍 NODE_ENV already set to:', process.env.NODE_ENV);
+}
+
+console.log('🎯 Final NODE_ENV:', process.env.NODE_ENV);
 
 const app = require('./app');
 const { connectMongo } = require('./mongo');
