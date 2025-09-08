@@ -22,9 +22,18 @@ const { validateEnv, getCorsConfig } = require('./config/env');
 // Validate environment variables
 const env = validateEnv();
 
+// Helper function to get actual environment (with production override)
+function getActualEnvironment() {
+  const isProductionServer = process.env.FORCE_PRODUCTION === 'true' || 
+                            process.env.NODE_ENV === 'production' ||
+                            (process.env.HOSTNAME && process.env.HOSTNAME.includes('trizenventures.com'));
+  return isProductionServer ? 'production' : env.NODE_ENV;
+}
+
 // Log environment for debugging
 console.log('🚀 Backend starting with environment:', {
   NODE_ENV: env.NODE_ENV,
+  ACTUAL_ENV: getActualEnvironment(),
   CORS_ORIGIN: env.CORS_ORIGIN
 });
 
@@ -90,7 +99,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(mongoSanitize());
 
 // Logging middleware
-if (env.NODE_ENV === 'production') {
+if (getActualEnvironment() === 'production') {
   // Ensure logs directory exists
   const logsDir = path.join(__dirname, 'logs');
   if (!fs.existsSync(logsDir)) {
@@ -108,11 +117,18 @@ if (env.NODE_ENV === 'production') {
 
 // Enhanced health check
 app.get('/api/v1/health', async (req, res) => {
+  // Force production mode for deployed servers
+  const isProductionServer = process.env.FORCE_PRODUCTION === 'true' || 
+                            process.env.NODE_ENV === 'production' ||
+                            (process.env.HOSTNAME && process.env.HOSTNAME.includes('trizenventures.com'));
+  
+  const actualEnvironment = getActualEnvironment();
+  
   const healthCheck = {
     status: 'ok',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    environment: env.NODE_ENV,
+    environment: actualEnvironment,
     version: require('./package.json').version,
     memory: process.memoryUsage(),
     pid: process.pid,
@@ -155,7 +171,7 @@ app.get('/api/v1/health', async (req, res) => {
 app.use('/api/v1/auth', authRouter);
 
 // Development-only unauthenticated routes
-if (env.NODE_ENV === 'development') {
+if (getActualEnvironment() === 'development') {
   app.use('/api/v1/dev/tasks', devTasksRouter);
   logger.info('🔓 Development mode: Unauthenticated tasks endpoint enabled at /api/v1/dev/tasks');
 }
@@ -189,7 +205,7 @@ app.use((error, req, res, next) => {
   });
 
   // Don't leak error details in production
-  const isDevelopment = env.NODE_ENV === 'development';
+  const isDevelopment = getActualEnvironment() === 'development';
   
   res.status(error.status || 500).json({
     error: isDevelopment ? error.message : 'Internal server error',
