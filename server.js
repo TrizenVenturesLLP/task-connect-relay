@@ -6,7 +6,15 @@ if (process.env.NODE_ENV === 'production' || process.env.FORCE_PRODUCTION === 't
   require('dotenv').config({ path: './env.production' });
 }
 
-// Force production mode for deployed servers
+const app = require('./app');
+const { connectMongo } = require('./mongo');
+const logger = require('./config/logger');
+const { validateEnv } = require('./config/env');
+
+// Validate environment on startup
+const env = validateEnv();
+
+// Force production mode AFTER validation (to override the default)
 console.log('🔍 Environment Detection - Current values:', {
   NODE_ENV: process.env.NODE_ENV,
   HOSTNAME: process.env.HOSTNAME,
@@ -18,8 +26,7 @@ console.log('🔍 Environment Detection - Current values:', {
   ALL_ENV_KEYS: Object.keys(process.env).filter(key => key.includes('NODE') || key.includes('FORCE') || key.includes('HOSTNAME'))
 });
 
-// Force production mode if FORCE_PRODUCTION is set or if NODE_ENV is already production
-// Also force production if we're running on the production server
+// Force production mode if FORCE_PRODUCTION is set or if we're running on the production server
 const isProductionServer = process.env.FORCE_PRODUCTION === 'true' || 
                           process.env.NODE_ENV === 'production' ||
                           (process.env.HOSTNAME && process.env.HOSTNAME.includes('trizenventures.com'));
@@ -52,14 +59,6 @@ Object.keys(process.env)
   .forEach(key => {
     console.log(`  ${key}: ${process.env[key]}`);
   });
-
-const app = require('./app');
-const { connectMongo } = require('./mongo');
-const logger = require('./config/logger');
-const { validateEnv } = require('./config/env');
-
-// Validate environment on startup
-const env = validateEnv();
 const PORT = env.PORT;
 
 let server;
