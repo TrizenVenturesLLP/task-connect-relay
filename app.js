@@ -115,6 +115,15 @@ if (getActualEnvironment() === 'production') {
   app.use(morgan('dev'));
 }
 
+// Simple test endpoint to verify deployment
+app.get('/api/v1/test', (req, res) => {
+  res.json({
+    message: "Deployment test - this should show if our changes are deployed",
+    timestamp: new Date().toISOString(),
+    hardcoded: "PRODUCTION_MODE_ACTIVE"
+  });
+});
+
 // Debug endpoint to see environment variables
 app.get('/api/v1/debug/env', (req, res) => {
   res.json({
@@ -141,9 +150,10 @@ app.get('/api/v1/health', async (req, res) => {
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     environment: 'production', // HARDCODED - no more environment detection issues!
-    version: require('./package.json').version,
+    version: '1.0.0-HARDCODED-PRODUCTION',
     memory: process.memoryUsage(),
     pid: process.pid,
+    deploymentTest: 'CHANGES_DEPLOYED_SUCCESSFULLY'
   };
 
   try {
