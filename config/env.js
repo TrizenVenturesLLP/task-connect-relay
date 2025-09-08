@@ -23,7 +23,7 @@ const envSchema = z.object({
   
   // Security
   RATE_LIMIT_WINDOW_MS: z.string().transform(Number).default('900000'), // 15 minutes
-  RATE_LIMIT_MAX_REQUESTS: z.string().transform(Number).default('100'),
+  RATE_LIMIT_MAX_REQUESTS: z.string().transform(Number).default('1000'), // More lenient for development
   
   // CORS - Centralized configuration
   CORS_ORIGIN: z.string().optional(),
@@ -41,9 +41,11 @@ function getCorsConfig(env) {
     'https://extrahand.in',
     'https://www.extrahand.in',
     'http://localhost:3000',
-    'https://extrahandbackend.llp.trizenventures.com',
+    'http://localhost:4000',
+    'http://localhost:8080',
     'http://127.0.0.1:3000',
-    'http://127.0.0.1:4000'
+    'http://127.0.0.1:4000',
+    'http://127.0.0.1:8080'
   ];
   
   // Add custom origins from environment if provided

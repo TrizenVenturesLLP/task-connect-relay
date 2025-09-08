@@ -14,6 +14,7 @@ const tasksRouter = require('./routes/tasks');
 const devTasksRouter = require('./routes/dev-tasks');
 const matchesRouter = require('./routes/matches');
 const applicationsRouter = require('./routes/applications');
+const chatsRouter = require('./routes/chats');
 const { authMiddleware } = require('./middleware/auth');
 const logger = require('./config/logger');
 const { validateEnv, getCorsConfig } = require('./config/env');
@@ -165,6 +166,7 @@ app.use('/api/v1/profiles', profilesRouter);
 app.use('/api/v1/tasks', tasksRouter);
 app.use('/api/v1/matches', matchesRouter);
 app.use('/api/v1/applications', applicationsRouter);
+app.use('/api/v1/chats', chatsRouter);
 
 // 404 handler for API routes
 app.use('/api', (req, res) => {

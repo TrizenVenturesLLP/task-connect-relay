@@ -1,7 +1,62 @@
 const express = require('express');
 const Profile = require('../models/Profile');
+const logger = require('../config/logger');
 
 const router = express.Router();
+
+// Search users by name, email, or phone
+router.get('/search', async (req, res) => {
+  try {
+    const { q, limit = 10 } = req.query;
+    const currentUserId = req.user.uid;
+    
+    if (!q || q.trim().length < 2) {
+      return res.status(400).json({
+        success: false,
+        error: 'Search query must be at least 2 characters'
+      });
+    }
+    
+    const searchQuery = q.trim();
+    
+    // Search by name, email, or phone (excluding current user)
+    const profiles = await Profile.find({
+      uid: { $ne: currentUserId }, // Exclude current user
+      $or: [
+        { name: { $regex: searchQuery, $options: 'i' } },
+        { email: { $regex: searchQuery, $options: 'i' } },
+        { phone: { $regex: searchQuery, $options: 'i' } }
+      ]
+    })
+    .select('uid name email phone roles userType skills rating totalReviews isVerified location')
+    .limit(parseInt(limit))
+    .lean();
+    
+    res.json({
+      success: true,
+      users: profiles.map(profile => ({
+        uid: profile.uid,
+        name: profile.name,
+        email: profile.email,
+        phone: profile.phone,
+        roles: profile.roles,
+        userType: profile.userType,
+        skills: profile.skills,
+        rating: profile.rating,
+        totalReviews: profile.totalReviews,
+        isVerified: profile.isVerified,
+        location: profile.location
+      }))
+    });
+    
+  } catch (error) {
+    logger.error('Error searching users:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to search users'
+    });
+  }
+});
 
 // GET /api/v1/profiles/me
 router.get('/me', async (req, res) => {

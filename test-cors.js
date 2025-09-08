@@ -7,10 +7,10 @@ const testOrigins = [
   'https://extrahand.in',
   'https://www.extrahand.in',
   'http://localhost:3000',
-  'https://extrahandbackend.llp.trizenventures.com'
+  'http://localhost:4000'
 ];
 
-const backendUrl = process.env.BACKEND_URL || 'https://extrahandbackend.llp.trizenventures.com';
+const backendUrl = process.env.BACKEND_URL || 'http://localhost:4000';
 
 async function testCors(origin) {
   try {
