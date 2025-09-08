@@ -1,7 +1,7 @@
 require('dotenv').config();
 
-// Force development mode for local development
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
+// Set environment mode
+if (!process.env.NODE_ENV) {
   // Check if we're running locally (not in Docker/container)
   const isLocalDevelopment = process.platform === 'win32' || 
                            process.env.HOSTNAME === undefined ||
@@ -9,7 +9,10 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
   
   if (isLocalDevelopment) {
     process.env.NODE_ENV = 'development';
-    console.log('🔧 Forcing development mode for local environment');
+    console.log('🔧 Setting development mode for local environment');
+  } else {
+    process.env.NODE_ENV = 'production';
+    console.log('🚀 Setting production mode for server environment');
   }
 }
 
