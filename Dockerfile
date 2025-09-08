@@ -70,7 +70,7 @@ EXPOSE 4000
 
 # ✅ FIXED HEALTH CHECK - Check localhost inside container
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
-    CMD curl -f http://localhost:4000/api/v1/health || exit 1
+    CMD curl -f https://extrahandbackend.llp.trizenventures.com//api/v1/health || exit 1
 
 # Use dumb-init for proper signal handling
 ENTRYPOINT ["dumb-init", "--"]
