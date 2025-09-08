@@ -115,20 +115,32 @@ if (getActualEnvironment() === 'production') {
   app.use(morgan('dev'));
 }
 
+// Debug endpoint to see environment variables
+app.get('/api/v1/debug/env', (req, res) => {
+  res.json({
+    NODE_ENV: process.env.NODE_ENV,
+    FORCE_PRODUCTION: process.env.FORCE_PRODUCTION,
+    HOSTNAME: process.env.HOSTNAME,
+    PORT: process.env.PORT,
+    CAPROVER: process.env.CAPROVER,
+    DOCKER: process.env.DOCKER,
+    PLATFORM: process.platform,
+    env_NODE_ENV: env.NODE_ENV,
+    actualEnvironment: getActualEnvironment(),
+    allEnvKeys: Object.keys(process.env).filter(key => 
+      key.includes('NODE') || key.includes('FORCE') || key.includes('HOSTNAME') || key.includes('CAPROVER')
+    )
+  });
+});
+
 // Enhanced health check
 app.get('/api/v1/health', async (req, res) => {
-  // Force production mode for deployed servers
-  const isProductionServer = process.env.FORCE_PRODUCTION === 'true' || 
-                            process.env.NODE_ENV === 'production' ||
-                            (process.env.HOSTNAME && process.env.HOSTNAME.includes('trizenventures.com'));
-  
-  const actualEnvironment = getActualEnvironment();
-  
+  // HARDCODE production mode for deployed servers - no more logic!
   const healthCheck = {
     status: 'ok',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    environment: actualEnvironment,
+    environment: 'production', // HARDCODED - no more environment detection issues!
     version: require('./package.json').version,
     memory: process.memoryUsage(),
     pid: process.pid,
